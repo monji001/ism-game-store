@@ -1,1 +1,205 @@
 
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ISM Game Store</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#0f0f14;
+color:white;
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 30px;
+background:#14141c;
+box-shadow:0 0 15px rgba(0,255,255,0.2);
+}
+
+.logo{
+font-size:20px;
+font-weight:bold;
+color:#00f7ff;
+}
+
+.lang-btn{
+background:none;
+border:1px solid #00f7ff;
+color:#00f7ff;
+padding:5px 12px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.hero{
+text-align:center;
+padding:80px 20px;
+}
+
+.hero h1{
+font-size:38px;
+color:#00f7ff;
+text-shadow:0 0 15px #00f7ff;
+}
+
+.section{
+padding:60px 20px;
+text-align:center;
+}
+
+.cards{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+}
+
+.card{
+background:#1a1a22;
+padding:25px;
+width:260px;
+border-radius:12px;
+box-shadow:0 0 20px rgba(0,255,255,0.2);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+box-shadow:0 0 25px rgba(0,255,255,0.5);
+}
+
+button{
+background:#00f7ff;
+border:none;
+padding:10px 20px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+margin-top:10px;
+}
+
+button:hover{
+background:#00c4cc;
+}
+
+.footer{
+text-align:center;
+padding:20px;
+color:gray;
+}
+
+.messenger{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#0084ff;
+color:white;
+padding:15px 18px;
+border-radius:50px;
+text-decoration:none;
+font-weight:bold;
+box-shadow:0 0 20px rgba(0,132,255,0.7);
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="logo">ISM Game Store</div>
+<button class="lang-btn" onclick="toggleLang()">AR / FR</button>
+</nav>
+
+<div class="hero">
+<h1 id="title">Digital Gaming Services</h1>
+<p id="subtitle">Premium & Fast Delivery in Tunisia</p>
+</div>
+
+<div class="section">
+<h2 id="servicesTitle">Our Services</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>eFootball Coins</h3>
+<p>260 Coins — 6 DT</p>
+<p>840 Coins — 20 DT</p>
+<p>1630 Coins — 35 DT</p>
+<p>2760 Coins — 60 DT</p>
+</div>
+
+<div class="card">
+<h3>Xbox Game Pass</h3>
+<p>1 Month — 20 DT</p>
+</div>
+
+</div>
+</div>
+
+<div class="section">
+<h2 id="pricingTitle">Pricing</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>eFootball 260</h3>
+<p>6 DT</p>
+<button onclick="goMessenger()">Commander</button>
+</div>
+
+<div class="card">
+<h3>eFootball 840</h3>
+<p>20 DT</p>
+<button onclick="goMessenger()">Commander</button>
+</div>
+
+<div class="card">
+<h3>Game Pass</h3>
+<p>20 DT</p>
+<button onclick="goMessenger()">Commander</button>
+</div>
+
+</div>
+</div>
+
+<div class="footer">
+© 2026 ISM Game Store
+</div>
+
+<a class="messenger" href="https://m.me/61555974173704" target="_blank">
+💬 Messenger
+</a>
+
+<script>
+let isArabic=false;
+
+function toggleLang(){
+isArabic=!isArabic;
+
+if(isArabic){
+document.getElementById("title").innerText="خدمات رقمية للألعاب";
+document.getElementById("subtitle").innerText="سرعة واحترافية في تونس";
+document.getElementById("servicesTitle").innerText="خدماتنا";
+document.getElementById("pricingTitle").innerText="الأسعار";
+}else{
+document.getElementById("title").innerText="Digital Gaming Services";
+document.getElementById("subtitle").innerText="Premium & Fast Delivery in Tunisia";
+document.getElementById("servicesTitle").innerText="Our Services";
+document.getElementById("pricingTitle").innerText="Pricing";
+}
+}
+
+function goMessenger(){
+window.location.href="https://m.me/61555974173704";
+}
+</script>
+
+</body>
+</html>
