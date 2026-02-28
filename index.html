@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ISM Game Store</title>
 
+<meta name="description" content="Premium Digital Services in Tunisia. Game Coins, Subscriptions, Gift Cards and more.">
+
 <style>
 
 /* ===== BASE ===== */
-
 body{
 margin:0;
 font-family:Arial, Helvetica, sans-serif;
@@ -24,13 +25,12 @@ margin:auto;
 }
 
 /* ===== NAVBAR ===== */
-
 nav{
 position:fixed;
 top:0;
 width:100%;
 background:rgba(10,12,20,0.95);
-backdrop-filter:blur(12px);
+backdrop-filter:blur(10px);
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -47,7 +47,8 @@ font-size:18px;
 
 .menu{
 display:flex;
-gap:25px;
+gap:20px;
+flex-wrap:wrap;
 }
 
 .menu a{
@@ -59,118 +60,83 @@ transition:0.3s;
 
 .menu a:hover{
 color:white;
-text-shadow:0 0 12px #00f7ff;
-}
-
-.lang-switch{
-cursor:pointer;
-color:#00f7ff;
-font-size:14px;
+text-shadow:0 0 10px #00f7ff;
 }
 
 /* ===== HERO ===== */
-
 .hero{
 padding-top:130px;
-padding-bottom:100px;
+padding-bottom:80px;
 text-align:center;
+background:linear-gradient(180deg,#07080f,#0d1120);
 }
 
 .hero h1{
-font-size:42px;
+font-size:40px;
 color:#00f7ff;
-text-shadow:0 0 25px #00f7ff;
-margin-bottom:20px;
+text-shadow:0 0 20px #00f7ff;
+margin-bottom:15px;
 }
 
 .hero p{
-color:#aaa;
+color:#ccc;
 font-size:18px;
-margin-bottom:35px;
 }
 
-.cta{
-background:#00f7ff;
-color:black;
-padding:14px 28px;
-border-radius:30px;
-text-decoration:none;
-font-weight:bold;
-transition:0.3s;
-}
-
-.cta:hover{
-background:white;
-}
-
-/* ===== SERVICES GRID ===== */
-
-.services{
+/* ===== CATEGORY SECTION ===== */
+.section{
 padding:60px 0;
 }
 
+.section h2{
+text-align:center;
+margin-bottom:40px;
+color:#00f7ff;
+font-size:28px;
+}
+
+/* ===== GRID ===== */
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:30px;
 }
 
+/* ===== CARD ===== */
 .card{
 background:#10121b;
-padding:40px 20px;
-border-radius:16px;
+padding:35px 25px;
+border-radius:18px;
 text-align:center;
-transition:0.4s;
 cursor:pointer;
-box-shadow:0 0 15px rgba(0,255,255,0.1);
+transition:0.4s;
+box-shadow:0 0 20px rgba(0,255,255,0.1);
 }
 
 .card:hover{
 transform:translateY(-8px);
-box-shadow:0 0 35px rgba(0,255,255,0.6);
+box-shadow:0 0 40px rgba(0,255,255,0.6);
 }
 
 .card h3{
-margin:0;
+margin:15px 0;
+font-size:20px;
 }
 
-/* ===== TRUST SECTION ===== */
-
-.trust{
-padding:80px 0;
-text-align:center;
-background:#0c0f18;
-}
-
-.trust h2{
-color:#00f7ff;
-margin-bottom:30px;
-}
-
-.trust-box{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:30px;
-margin-top:40px;
-}
-
-.trust-item{
-background:#11141f;
-padding:30px;
-border-radius:12px;
+.card p{
+color:#aaa;
+font-size:14px;
 }
 
 /* ===== FOOTER ===== */
-
 footer{
-padding:30px;
+padding:40px;
 text-align:center;
-color:#777;
 background:#05060a;
+color:#777;
 }
 
-/* ===== MESSENGER FLOAT ===== */
-
+/* ===== MESSENGER ===== */
 .messenger{
 position:fixed;
 bottom:25px;
@@ -200,88 +166,102 @@ transform:scale(1.15);
 
 <nav>
 <div class="logo">ISM Game Store</div>
-
 <div class="menu">
-<a href="efootball.html">EFOOTBALL</a>
-<a href="psplus.html">PS PLUS</a>
-<a href="netflix.html">NETFLIX</a>
-<span class="lang-switch" onclick="toggleLang()">AR | FR | EN</span>
+<a href="#games">Game Coins</a>
+<a href="#subs">Subscriptions</a>
+<a href="#gift">Gift Cards</a>
+<a href="#internet">Internet</a>
 </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
 <div class="container">
-<h1 id="heroTitle">Premium Digital Gaming Services</h1>
-<p id="heroText">Fast delivery • Secure accounts • Best prices in Tunisia</p>
-<a href="#services" class="cta" id="ctaBtn">Explore Services</a>
+<h1>Premium Digital Services</h1>
+<p>Fast Delivery • Secure Payment • Trusted Service</p>
 </div>
 </section>
 
-<section class="services" id="services">
+<!-- GAME COINS -->
+<section class="section" id="games">
 <div class="container">
+<h2>🎮 Game Coins</h2>
 <div class="grid">
 
 <div class="card" onclick="location.href='efootball.html'">
-<h3>🪙 Efootball Coins</h3>
+<h3>⚽ eFootball Coins</h3>
+<p>Promo & Normal Packs</p>
 </div>
 
-<div class="card" onclick="location.href='psplus.html'">
-<h3>🎮 PS Plus Ukraine</h3>
+<div class="card" onclick="location.href='freefire.html'">
+<h3>💎 Free Fire Diamonds</h3>
+<p>Diamonds + Membership</p>
 </div>
 
-<div class="card" onclick="location.href='netflix.html'">
-<h3>🎁 Netflix Accounts</h3>
+<div class="card" onclick="location.href='tiktok.html'">
+<h3>🎵 TikTok Coins</h3>
+<p>Top-Up Packages</p>
 </div>
 
 </div>
 </div>
 </section>
 
-<section class="trust">
+<!-- SUBSCRIPTIONS -->
+<section class="section" id="subs">
 <div class="container">
-<h2 id="trustTitle">Why Choose ISM?</h2>
+<h2>📺 Subscriptions</h2>
+<div class="grid">
 
-<div class="trust-box">
-<div class="trust-item">⚡ Instant Delivery</div>
-<div class="trust-item">🔒 Secure Accounts</div>
-<div class="trust-item">💎 Trusted Service</div>
-<div class="trust-item">📩 24/7 Messenger Support</div>
+<div class="card" onclick="location.href='psplus.html'">
+<h3>🎮 PS Plus Ukraine</h3>
+<p>Essential • Extra • Deluxe</p>
 </div>
 
+<div class="card" onclick="location.href='netflix.html'">
+<h3>🎬 Netflix</h3>
+<p>1 Profile / Full Account</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- GIFT CARDS -->
+<section class="section" id="gift">
+<div class="container">
+<h2>🎁 Gift Cards</h2>
+<div class="grid">
+
+<div class="card" onclick="location.href='psn-tr.html'">
+<h3>🇹🇷 PSN Turkey</h3>
+<p>250 TL → 2000 TL</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- INTERNET -->
+<section class="section" id="internet">
+<div class="container">
+<h2>📶 Internet SIM</h2>
+<div class="grid">
+
+<div class="card" onclick="location.href='internet.html'">
+<h3>Ooredoo & Orange</h3>
+<p>25 Go → 200 Go</p>
+</div>
+
+</div>
 </div>
 </section>
 
 <footer>
-© 2026 ISM Game Store — All Rights Reserved
+© 2026 ISM Game Store • All Rights Reserved
 </footer>
 
 <a class="messenger" href="https://m.me/61555974173704" target="_blank">💬</a>
-
-<script>
-let lang = "en";
-
-function toggleLang(){
-if(lang==="en"){
-document.getElementById("heroTitle").innerText="خدمات رقمية مميزة للألعاب";
-document.getElementById("heroText").innerText="تسليم سريع • حسابات آمنة • أفضل الأسعار";
-document.getElementById("ctaBtn").innerText="اكتشف الخدمات";
-document.getElementById("trustTitle").innerText="لماذا تختار ISM؟";
-lang="ar";
-}else if(lang==="ar"){
-document.getElementById("heroTitle").innerText="Services Gaming Premium";
-document.getElementById("heroText").innerText="Livraison rapide • Comptes sécurisés • Meilleurs prix";
-document.getElementById("ctaBtn").innerText="Voir les services";
-document.getElementById("trustTitle").innerText="Pourquoi choisir ISM ?";
-lang="fr";
-}else{
-document.getElementById("heroTitle").innerText="Premium Digital Gaming Services";
-document.getElementById("heroText").innerText="Fast delivery • Secure accounts • Best prices in Tunisia";
-document.getElementById("ctaBtn").innerText="Explore Services";
-document.getElementById("trustTitle").innerText="Why Choose ISM?";
-lang="en";
-}
-}
-</script>
 
 </body>
 </html>
