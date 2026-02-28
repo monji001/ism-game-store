@@ -5,25 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ISM Game Store</title>
 
-<meta name="theme-color" content="#07080f">
-
 <style>
 body{
 margin:0;
 font-family:Arial, sans-serif;
-background:#07080f;
+background:#0b0f1a;
 color:white;
 }
 
 nav{
-position:fixed;
-top:0;
-width:100%;
-background:#0d1120;
+background:#111827;
+padding:15px 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:15px 20px;
+position:fixed;
+width:100%;
+top:0;
 z-index:1000;
 }
 
@@ -33,34 +31,40 @@ font-weight:bold;
 }
 
 .cart-btn{
-cursor:pointer;
 background:#00f7ff;
 color:black;
 padding:6px 12px;
 border-radius:20px;
+cursor:pointer;
 font-weight:bold;
 }
 
 .hero{
-padding-top:120px;
+padding-top:100px;
 text-align:center;
-padding-bottom:60px;
+padding-bottom:40px;
 }
 
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
+gap:25px;
 width:90%;
 max-width:1100px;
 margin:auto;
+padding-bottom:60px;
 }
 
 .card{
-background:#101726;
-padding:30px;
-border-radius:20px;
+background:#1f2937;
+padding:25px;
+border-radius:15px;
 text-align:center;
+}
+
+.price{
+color:#00f7ff;
+margin:10px 0;
 }
 
 button{
@@ -72,7 +76,6 @@ cursor:pointer;
 font-weight:bold;
 }
 
-/* CART MODAL */
 .cart-modal{
 position:fixed;
 top:0;
@@ -86,18 +89,26 @@ align-items:center;
 }
 
 .cart-content{
-background:#11141f;
-padding:30px;
-border-radius:20px;
+background:#111827;
+padding:25px;
+border-radius:15px;
 width:90%;
 max-width:400px;
+}
+
+.cart-content ul{
+list-style:none;
+padding:0;
+}
+
+.cart-content li{
+margin-bottom:8px;
 }
 
 footer{
 padding:40px;
 text-align:center;
-background:#05060a;
-margin-top:60px;
+background:#0f172a;
 }
 
 </style>
@@ -112,78 +123,104 @@ margin-top:60px;
 </nav>
 
 <section class="hero">
-<h1>Digital Store Elite</h1>
-<p>Add products to cart and checkout</p>
+<h1>Official Digital Marketplace</h1>
+<p>Secure • Professional • Trusted</p>
 </section>
 
-<div class="grid">
-
-<div class="card">
-<h3>eFootball Coins</h3>
-<button onclick="addToCart('eFootball Coins')">Add to Cart</button>
-</div>
-
-<div class="card">
-<h3>Free Fire Diamonds</h3>
-<button onclick="addToCart('Free Fire Diamonds')">Add to Cart</button>
-</div>
-
-<div class="card">
-<h3>PS Plus</h3>
-<button onclick="addToCart('PS Plus')">Add to Cart</button>
-</div>
-
-<div class="card">
-<h3>Netflix</h3>
-<button onclick="addToCart('Netflix')">Add to Cart</button>
-</div>
-
-</div>
+<div class="grid" id="productGrid"></div>
 
 <footer>
-© 2026 ISM Game Store
+© 2026 ISM Game Store – Company Edition
 </footer>
 
-<!-- CART MODAL -->
+<!-- CART -->
 <div class="cart-modal" id="cartModal">
 <div class="cart-content">
 <h3>Your Cart</h3>
 <ul id="cartItems"></ul>
-<button onclick="checkout()">Checkout via Messenger</button>
+<p>Total: <span id="totalPrice">0</span> DT</p>
+<button onclick="checkout()">Checkout</button>
 <button onclick="closeCart()">Close</button>
 </div>
 </div>
 
 <script>
 
+/* ===== PRODUCT DATABASE ===== */
+const products=[
+{ id:1, name:"eFootball Coins 840", price:20 },
+{ id:2, name:"Free Fire 1080 Diamonds", price:40 },
+{ id:3, name:"PS Plus 1 Month", price:35 },
+{ id:4, name:"Netflix 1 Profile", price:15 },
+{ id:5, name:"PSN Turkey 500 TL", price:60 }
+];
+
+/* ===== RENDER PRODUCTS ===== */
+const grid=document.getElementById("productGrid");
+
+products.forEach(product=>{
+const card=document.createElement("div");
+card.className="card";
+card.innerHTML=`
+<h3>${product.name}</h3>
+<div class="price">${product.price} DT</div>
+<button onclick="addToCart(${product.id})">Add to Cart</button>
+`;
+grid.appendChild(card);
+});
+
+/* ===== CART SYSTEM ===== */
 let cart=[];
 
-function addToCart(product){
+function addToCart(id){
+const product=products.find(p=>p.id===id);
 cart.push(product);
+updateCart();
+}
+
+function updateCart(){
 document.getElementById("cartCount").innerText=cart.length;
+renderCart();
+}
+
+function renderCart(){
+const list=document.getElementById("cartItems");
+list.innerHTML="";
+let total=0;
+
+cart.forEach((item,index)=>{
+total+=item.price;
+list.innerHTML+=`
+<li>
+${item.name} - ${item.price} DT
+<button onclick="removeItem(${index})">❌</button>
+</li>
+`;
+});
+
+document.getElementById("totalPrice").innerText=total;
+}
+
+function removeItem(index){
+cart.splice(index,1);
+updateCart();
 }
 
 function openCart(){
 document.getElementById("cartModal").style.display="flex";
-renderCart();
 }
 
 function closeCart(){
 document.getElementById("cartModal").style.display="none";
 }
 
-function renderCart(){
-let list=document.getElementById("cartItems");
-list.innerHTML="";
-cart.forEach(item=>{
-let li=document.createElement("li");
-li.innerText=item;
-list.appendChild(li);
-});
-}
-
 function checkout(){
-window.location.href="https://m.me/61555974173704";
+let message="Order:%0A";
+cart.forEach(item=>{
+message+=item.name+" - "+item.price+" DT%0A";
+});
+message+="Total: "+document.getElementById("totalPrice").innerText+" DT";
+window.location.href="https://m.me/61555974173704?text="+message;
 }
 
 </script>
