@@ -1,50 +1,270 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Efootball</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Efootball Coins - ISM Game Store</title>
+
 <style>
-body{margin:0;font-family:Arial;background:#0f0f14;color:white;text-align:center;}
-nav{background:#14141c;padding:15px;}
-nav a{color:#00f7ff;margin:0 15px;text-decoration:none;font-weight:bold;}
-.section{padding:60px 20px;}
-.cards{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
-.card{background:#1a1a22;padding:25px;width:250px;border-radius:12px;}
-button{background:#00f7ff;border:none;padding:10px 20px;border-radius:6px;margin-top:10px;}
+
+/* ===== BASE ===== */
+
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#07080f;
+color:white;
+overflow-x:hidden;
+}
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+/* ===== NAVBAR ===== */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(10,12,20,0.95);
+backdrop-filter:blur(12px);
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 30px;
+z-index:1000;
+box-shadow:0 0 20px rgba(0,255,255,0.2);
+}
+
+.logo{
+color:#00f7ff;
+font-weight:bold;
+font-size:18px;
+}
+
+.menu{
+display:flex;
+gap:25px;
+}
+
+.menu a{
+color:#00f7ff;
+text-decoration:none;
+font-weight:bold;
+transition:0.3s;
+}
+
+.menu a:hover{
+color:white;
+text-shadow:0 0 12px #00f7ff;
+}
+
+.lang-switch{
+cursor:pointer;
+color:#00f7ff;
+font-size:14px;
+}
+
+/* ===== HEADER ===== */
+
+.header{
+padding-top:120px;
+padding-bottom:60px;
+text-align:center;
+}
+
+.header h1{
+font-size:36px;
+color:#00f7ff;
+text-shadow:0 0 20px #00f7ff;
+}
+
+/* ===== GRID ===== */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+padding-bottom:60px;
+}
+
+.card{
+background:#10121b;
+padding:30px;
+border-radius:14px;
+text-align:center;
+transition:0.4s;
+box-shadow:0 0 15px rgba(0,255,255,0.1);
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 0 30px rgba(0,255,255,0.6);
+}
+
+.card h3{
+margin:0 0 10px 0;
+}
+
+.price{
+color:#00f7ff;
+font-size:18px;
+margin-bottom:10px;
+}
+
+button{
+background:#00f7ff;
+border:none;
+padding:10px 20px;
+border-radius:25px;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+background:white;
+}
+
+/* ===== SECTION TITLE ===== */
+
+.section-title{
+text-align:center;
+margin:50px 0 30px 0;
+font-size:22px;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+padding:30px;
+text-align:center;
+color:#777;
+background:#05060a;
+}
+
+/* ===== MESSENGER FLOAT ===== */
+
+.messenger{
+position:fixed;
+bottom:25px;
+right:25px;
+background:#0084ff;
+width:60px;
+height:60px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+text-decoration:none;
+font-size:24px;
+color:white;
+box-shadow:0 0 30px rgba(0,132,255,0.8);
+transition:0.4s;
+}
+
+.messenger:hover{
+transform:scale(1.15);
+}
+
 </style>
 </head>
+
 <body>
 
 <nav>
+<div class="logo">ISM Game Store</div>
+
+<div class="menu">
 <a href="index.html">HOME</a>
+<a href="psplus.html">PS PLUS</a>
+<a href="netflix.html">NETFLIX</a>
+<span class="lang-switch" onclick="toggleLang()">AR | FR | EN</span>
+</div>
 </nav>
 
-<div class="section">
-<h2>COINS EFOOTBALL MOBILE</h2>
+<section class="header">
+<div class="container">
+<h1 id="pageTitle">Efootball Mobile Coins</h1>
+</div>
+</section>
 
-<h3 style="color:#00ffae;">🔥 PROMO</h3>
-<div class="cards">
-<div class="card"><h3>260</h3><p>6 DT</p><button onclick="go()">Commander</button></div>
-<div class="card"><h3>840</h3><p>20 DT</p><button onclick="go()">Commander</button></div>
-<div class="card"><h3>1630</h3><p>35 DT</p><button onclick="go()">Commander</button></div>
+<div class="container">
+
+<div class="section-title" id="promoTitle">🔥 PROMO</div>
+<div class="grid">
+
+<div class="card">
+<h3>260 🪙</h3>
+<div class="price">6 DT</div>
+<button onclick="order()">Order</button>
 </div>
 
-<h3 style="color:#ff4444;margin-top:40px;">⚠️ SANS PROMO</h3>
-<div class="cards">
-<div class="card"><h3>130</h3><p>6 DT</p><button onclick="go()">Commander</button></div>
-<div class="card"><h3>300</h3><p>15 DT</p><button onclick="go()">Commander</button></div>
-<div class="card"><h3>550</h3><p>23 DT</p><button onclick="go()">Commander</button></div>
-<div class="card"><h3>750</h3><p>28 DT</p><button onclick="go()">Commander</button></div>
-<div class="card"><h3>1040</h3><p>38 DT</p><button onclick="go()">Commander</button></div>
-<div class="card"><h3>2130</h3><p>75 DT</p><button onclick="go()">Commander</button></div>
-<div class="card"><h3>3250</h3><p>110 DT</p><button onclick="go()">Commander</button></div>
-<div class="card"><h3>5700</h3><p>175 DT</p><button onclick="go()">Commander</button></div>
+<div class="card">
+<h3>840 🪙</h3>
+<div class="price">20 DT</div>
+<button onclick="order()">Order</button>
+</div>
+
+<div class="card">
+<h3>1630 🪙</h3>
+<div class="price">35 DT</div>
+<button onclick="order()">Order</button>
 </div>
 
 </div>
+
+<div class="section-title" id="normalTitle">⚠️ Without Promo</div>
+<div class="grid">
+
+<div class="card"><h3>130 🪙</h3><div class="price">6 DT</div><button onclick="order()">Order</button></div>
+<div class="card"><h3>300 🪙</h3><div class="price">15 DT</div><button onclick="order()">Order</button></div>
+<div class="card"><h3>550 🪙</h3><div class="price">23 DT</div><button onclick="order()">Order</button></div>
+<div class="card"><h3>750 🪙</h3><div class="price">28 DT</div><button onclick="order()">Order</button></div>
+<div class="card"><h3>1040 🪙</h3><div class="price">38 DT</div><button onclick="order()">Order</button></div>
+<div class="card"><h3>2130 🪙</h3><div class="price">75 DT</div><button onclick="order()">Order</button></div>
+<div class="card"><h3>3250 🪙</h3><div class="price">110 DT</div><button onclick="order()">Order</button></div>
+<div class="card"><h3>5700 🪙</h3><div class="price">175 DT</div><button onclick="order()">Order</button></div>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 ISM Game Store
+</footer>
+
+<a class="messenger" href="https://m.me/61555974173704" target="_blank">💬</a>
 
 <script>
-function go(){window.location.href="https://m.me/61555974173704";}
+
+function order(){
+window.location.href="https://m.me/61555974173704";
+}
+
+let lang="en";
+
+function toggleLang(){
+if(lang==="en"){
+document.getElementById("pageTitle").innerText="كوينز eFootball موبايل";
+document.getElementById("promoTitle").innerText="🔥 عرض خاص";
+document.getElementById("normalTitle").innerText="⚠️ بدون عرض";
+lang="ar";
+}else if(lang==="ar"){
+document.getElementById("pageTitle").innerText="Coins eFootball Mobile";
+document.getElementById("promoTitle").innerText="🔥 Promotion";
+document.getElementById("normalTitle").innerText="⚠️ Sans Promotion";
+lang="fr";
+}else{
+document.getElementById("pageTitle").innerText="Efootball Mobile Coins";
+document.getElementById("promoTitle").innerText="🔥 PROMO";
+document.getElementById("normalTitle").innerText="⚠️ Without Promo";
+lang="en";
+}
+}
+
 </script>
 
 </body>
