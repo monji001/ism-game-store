@@ -5,30 +5,51 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ISM Game Store</title>
 
-<meta name="description" content="Premium Digital Services in Tunisia. Game Coins, Subscriptions, Gift Cards and Internet Packages.">
-
 <style>
+
+/* ===== LOADER ===== */
+#loader{
+position:fixed;
+width:100%;
+height:100%;
+background:#07080f;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+flex-direction:column;
+}
+
+.loader-text{
+color:#00f7ff;
+font-size:28px;
+letter-spacing:3px;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+0%{opacity:0.3;}
+50%{opacity:1;}
+100%{opacity:0.3;}
+}
 
 /* ===== GLOBAL ===== */
 html{scroll-behavior:smooth;}
+
 body{
 margin:0;
-font-family:Arial, Helvetica, sans-serif;
+font-family:Arial, sans-serif;
 background:#07080f;
 color:white;
 overflow-x:hidden;
-animation:fadeIn 1.2s ease;
 }
 
-@keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
-}
-
-.container{
-width:90%;
-max-width:1200px;
-margin:auto;
+/* ===== PARTICLE BG ===== */
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
 }
 
 /* ===== NAV ===== */
@@ -36,61 +57,42 @@ nav{
 position:fixed;
 top:0;
 width:100%;
-background:rgba(10,12,20,0.85);
-backdrop-filter:blur(10px);
+background:rgba(10,12,20,0.6);
+backdrop-filter:blur(15px);
 display:flex;
 justify-content:space-between;
-align-items:center;
 padding:15px 30px;
 z-index:1000;
-border-bottom:1px solid rgba(0,255,255,0.2);
 }
 
 .logo{
 color:#00f7ff;
 font-weight:bold;
-font-size:18px;
-}
-
-.menu{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
-align-items:center;
+text-shadow:0 0 10px #00f7ff;
 }
 
 .menu a{
 color:#00f7ff;
 text-decoration:none;
+margin-left:20px;
 font-weight:bold;
 transition:0.3s;
 }
 
 .menu a:hover{
 color:white;
-text-shadow:0 0 10px #00f7ff;
-}
-
-.lang-btn{
-cursor:pointer;
-background:#00f7ff;
-color:black;
-padding:5px 12px;
-border-radius:20px;
-font-size:12px;
-font-weight:bold;
+text-shadow:0 0 15px #00f7ff;
 }
 
 /* ===== HERO ===== */
 .hero{
-padding-top:140px;
-padding-bottom:90px;
+padding-top:150px;
 text-align:center;
-background:linear-gradient(180deg,#07080f,#101726);
+padding-bottom:120px;
 }
 
 .hero h1{
-font-size:45px;
+font-size:55px;
 background:linear-gradient(90deg,#00f7ff,#fff,#00f7ff);
 -webkit-background-clip:text;
 color:transparent;
@@ -104,93 +106,78 @@ animation:shine 3s linear infinite;
 
 .hero p{
 color:#ccc;
-margin-top:10px;
+font-size:18px;
 }
 
 /* ===== SECTION ===== */
 .section{
-padding:70px 0;
+padding:80px 0;
+text-align:center;
 }
 
 .section h2{
-text-align:center;
-margin-bottom:50px;
 color:#00f7ff;
+margin-bottom:50px;
+font-size:30px;
 }
 
 /* ===== GRID ===== */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:35px;
+gap:40px;
+width:90%;
+max-width:1200px;
+margin:auto;
 }
 
 /* ===== CARD ===== */
 .card{
-background:rgba(20,25,40,0.85);
+background:rgba(20,25,40,0.8);
 border-radius:20px;
-padding:40px 20px;
-text-align:center;
+padding:50px 20px;
 cursor:pointer;
-transition:0.4s;
-border:1px solid rgba(0,255,255,0.15);
+transition:0.5s;
+position:relative;
+overflow:hidden;
+border:1px solid rgba(0,255,255,0.2);
 }
 
 .card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 50px rgba(0,255,255,0.6);
+transform:translateY(-15px) scale(1.03);
+box-shadow:0 0 60px rgba(0,255,255,0.8);
 }
 
 .card h3{
-margin-bottom:10px;
+margin-bottom:15px;
 }
 
-/* ===== MODAL ===== */
-.modal{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.8);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:2000;
-}
-
-.modal-content{
-background:#11141f;
-padding:40px;
-border-radius:20px;
-width:90%;
-max-width:400px;
-text-align:center;
-}
-
-.modal input{
-width:100%;
-padding:10px;
-margin:10px 0;
-border-radius:10px;
-border:none;
-}
-
-.modal button{
+.badge{
+position:absolute;
+top:15px;
+right:15px;
 background:#00f7ff;
-border:none;
-padding:10px 20px;
-border-radius:20px;
-cursor:pointer;
+color:black;
+padding:6px 14px;
+border-radius:30px;
+font-size:12px;
 font-weight:bold;
+}
+
+/* ===== COUNTER ===== */
+.counter{
+font-size:40px;
+color:#00f7ff;
+margin-top:20px;
 }
 
 /* ===== FOOTER ===== */
 footer{
-padding:40px;
-text-align:center;
+padding:60px;
 background:#05060a;
+text-align:center;
 color:#777;
+margin-top:60px;
 }
 
 /* ===== MESSENGER ===== */
@@ -199,131 +186,154 @@ position:fixed;
 bottom:25px;
 right:25px;
 background:#0084ff;
-width:65px;
-height:65px;
+width:70px;
+height:70px;
 display:flex;
 align-items:center;
 justify-content:center;
 border-radius:50%;
 text-decoration:none;
-font-size:26px;
+font-size:30px;
 color:white;
-box-shadow:0 0 40px rgba(0,132,255,0.9);
+box-shadow:0 0 50px rgba(0,132,255,0.9);
 transition:0.4s;
 }
 
 .messenger:hover{
-transform:scale(1.15);
+transform:scale(1.2);
 }
 
 </style>
 </head>
 <body>
 
+<div id="loader">
+<div class="loader-text">ISM GAME STORE</div>
+</div>
+
+<canvas id="bg"></canvas>
+
 <nav>
 <div class="logo">ISM Game Store</div>
 <div class="menu">
-<a href="#games" id="navGames">Game Coins</a>
-<a href="#subs" id="navSubs">Subscriptions</a>
-<a href="#gift" id="navGift">Gift Cards</a>
-<a href="#internet" id="navInternet">Internet</a>
-<div class="lang-btn" onclick="toggleLang()">AR</div>
+<a href="#games">Games</a>
+<a href="#subs">Subs</a>
+<a href="#gift">Gift</a>
+<a href="#internet">Internet</a>
 </div>
 </nav>
 
 <section class="hero">
-<div class="container">
-<h1 id="titleHero">Premium Digital Marketplace</h1>
-<p id="subtitleHero">Fast Delivery • Secure Payment • Trusted Service</p>
-</div>
+<h1>Digital Marketplace Elite</h1>
+<p>Fast • Secure • Professional</p>
+<div class="counter" id="counter">0+</div>
 </section>
 
 <section class="section" id="games">
-<div class="container">
-<h2>🎮 Game Coins</h2>
+<h2>Game Coins</h2>
 <div class="grid">
-<div class="card" onclick="openModal('eFootball')"><h3>eFootball</h3></div>
-<div class="card" onclick="openModal('Free Fire')"><h3>Free Fire</h3></div>
-<div class="card" onclick="openModal('TikTok Coins')"><h3>TikTok Coins</h3></div>
+<div class="card" onclick="location.href='efootball.html'">
+<div class="badge">BEST</div>
+<h3>eFootball</h3>
+</div>
+<div class="card" onclick="location.href='freefire.html'">
+<h3>Free Fire</h3>
+</div>
+<div class="card" onclick="location.href='tiktok.html'">
+<h3>TikTok Coins</h3>
 </div>
 </div>
 </section>
 
 <section class="section" id="subs">
-<div class="container">
-<h2>📺 Subscriptions</h2>
+<h2>Subscriptions</h2>
 <div class="grid">
-<div class="card" onclick="openModal('PS Plus')"><h3>PS Plus</h3></div>
-<div class="card" onclick="openModal('Netflix')"><h3>Netflix</h3></div>
+<div class="card" onclick="location.href='psplus.html'">
+<h3>PS Plus</h3>
+</div>
+<div class="card" onclick="location.href='netflix.html'">
+<h3>Netflix</h3>
 </div>
 </div>
 </section>
 
 <section class="section" id="gift">
-<div class="container">
-<h2>🎁 Gift Cards</h2>
+<h2>Gift Cards</h2>
 <div class="grid">
-<div class="card" onclick="openModal('PSN Turkey')"><h3>PSN Turkey</h3></div>
+<div class="card" onclick="location.href='psn-tr.html'">
+<h3>PSN Turkey</h3>
 </div>
 </div>
 </section>
 
 <section class="section" id="internet">
-<div class="container">
-<h2>📶 Internet SIM</h2>
+<h2>Internet</h2>
 <div class="grid">
-<div class="card" onclick="openModal('Internet Package')"><h3>Ooredoo & Orange</h3></div>
+<div class="card" onclick="location.href='internet.html'">
+<h3>Ooredoo & Orange</h3>
 </div>
 </div>
 </section>
 
 <footer>
-© 2026 ISM Game Store
+© 2026 ISM Game Store — GOD MODE EDITION
 </footer>
 
 <a class="messenger" href="https://m.me/61555974173704" target="_blank">💬</a>
 
-<!-- MODAL -->
-<div class="modal" id="orderModal">
-<div class="modal-content">
-<h3 id="modalTitle">Order</h3>
-<input type="text" placeholder="Your Name">
-<input type="text" placeholder="Details">
-<button onclick="sendOrder()">Send via Messenger</button>
-<button onclick="closeModal()">Cancel</button>
-</div>
-</div>
-
 <script>
 
-let currentProduct="";
-
-function openModal(product){
-currentProduct=product;
-document.getElementById("modalTitle").innerText="Order: "+product;
-document.getElementById("orderModal").style.display="flex";
+/* Loader */
+window.onload = function(){
+setTimeout(()=>{document.getElementById("loader").style.display="none";},1500);
 }
 
-function closeModal(){
-document.getElementById("orderModal").style.display="none";
+/* Counter Animation */
+let count=0;
+let counter=document.getElementById("counter");
+let interval=setInterval(()=>{
+count+=10;
+counter.innerText=count+"+";
+if(count>=500){
+clearInterval(interval);
+}
+},30);
+
+/* Particle Background */
+const canvas=document.getElementById("bg");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<80;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2,
+d:Math.random()*1
+});
 }
 
-function sendOrder(){
-window.location.href="https://m.me/61555974173704";
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="rgba(0,255,255,0.5)";
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2,true);
+ctx.fill();
+});
+update();
 }
 
-let lang="en";
-function toggleLang(){
-if(lang==="en"){
-document.getElementById("titleHero").innerText="متجر الخدمات الرقمية";
-document.getElementById("subtitleHero").innerText="تسليم سريع • دفع آمن • خدمة موثوقة";
-lang="ar";
-}else{
-document.getElementById("titleHero").innerText="Premium Digital Marketplace";
-document.getElementById("subtitleHero").innerText="Fast Delivery • Secure Payment • Trusted Service";
-lang="en";
+function update(){
+particles.forEach(p=>{
+p.y+=p.d;
+if(p.y>canvas.height){p.y=0;}
+});
 }
-}
+
+setInterval(draw,30);
 
 </script>
 
