@@ -5,148 +5,75 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ISM Game Store</title>
 
-<meta name="description" content="Premium Digital Services in Tunisia. Game Coins, Subscriptions, Gift Cards and Internet Packages.">
+<meta name="theme-color" content="#07080f">
 
 <style>
-
-/* ===== GLOBAL ===== */
-html{scroll-behavior:smooth;}
 body{
 margin:0;
-font-family:Arial, Helvetica, sans-serif;
+font-family:Arial, sans-serif;
 background:#07080f;
 color:white;
-overflow-x:hidden;
-animation:fadeIn 1.2s ease;
 }
 
-@keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
-}
-
-.container{
-width:90%;
-max-width:1200px;
-margin:auto;
-}
-
-/* ===== NAV ===== */
 nav{
 position:fixed;
 top:0;
 width:100%;
-background:rgba(10,12,20,0.85);
-backdrop-filter:blur(10px);
+background:#0d1120;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:15px 30px;
+padding:15px 20px;
 z-index:1000;
-border-bottom:1px solid rgba(0,255,255,0.2);
 }
 
 .logo{
 color:#00f7ff;
 font-weight:bold;
-font-size:18px;
 }
 
-.menu{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
-align-items:center;
-}
-
-.menu a{
-color:#00f7ff;
-text-decoration:none;
-font-weight:bold;
-transition:0.3s;
-}
-
-.menu a:hover{
-color:white;
-text-shadow:0 0 10px #00f7ff;
-}
-
-.lang-btn{
+.cart-btn{
 cursor:pointer;
 background:#00f7ff;
 color:black;
-padding:5px 12px;
+padding:6px 12px;
 border-radius:20px;
-font-size:12px;
 font-weight:bold;
 }
 
-/* ===== HERO ===== */
 .hero{
-padding-top:140px;
-padding-bottom:90px;
+padding-top:120px;
 text-align:center;
-background:linear-gradient(180deg,#07080f,#101726);
+padding-bottom:60px;
 }
 
-.hero h1{
-font-size:45px;
-background:linear-gradient(90deg,#00f7ff,#fff,#00f7ff);
--webkit-background-clip:text;
-color:transparent;
-animation:shine 3s linear infinite;
-}
-
-@keyframes shine{
-0%{background-position:0%;}
-100%{background-position:200%;}
-}
-
-.hero p{
-color:#ccc;
-margin-top:10px;
-}
-
-/* ===== SECTION ===== */
-.section{
-padding:70px 0;
-}
-
-.section h2{
-text-align:center;
-margin-bottom:50px;
-color:#00f7ff;
-}
-
-/* ===== GRID ===== */
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:35px;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+width:90%;
+max-width:1100px;
+margin:auto;
 }
 
-/* ===== CARD ===== */
 .card{
-background:rgba(20,25,40,0.85);
+background:#101726;
+padding:30px;
 border-radius:20px;
-padding:40px 20px;
 text-align:center;
+}
+
+button{
+background:#00f7ff;
+border:none;
+padding:8px 20px;
+border-radius:20px;
 cursor:pointer;
-transition:0.4s;
-border:1px solid rgba(0,255,255,0.15);
+font-weight:bold;
 }
 
-.card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 50px rgba(0,255,255,0.6);
-}
-
-.card h3{
-margin-bottom:10px;
-}
-
-/* ===== MODAL ===== */
-.modal{
+/* CART MODAL */
+.cart-modal{
 position:fixed;
 top:0;
 left:0;
@@ -156,64 +83,21 @@ background:rgba(0,0,0,0.8);
 display:none;
 justify-content:center;
 align-items:center;
-z-index:2000;
 }
 
-.modal-content{
+.cart-content{
 background:#11141f;
-padding:40px;
+padding:30px;
 border-radius:20px;
 width:90%;
 max-width:400px;
-text-align:center;
 }
 
-.modal input{
-width:100%;
-padding:10px;
-margin:10px 0;
-border-radius:10px;
-border:none;
-}
-
-.modal button{
-background:#00f7ff;
-border:none;
-padding:10px 20px;
-border-radius:20px;
-cursor:pointer;
-font-weight:bold;
-}
-
-/* ===== FOOTER ===== */
 footer{
 padding:40px;
 text-align:center;
 background:#05060a;
-color:#777;
-}
-
-/* ===== MESSENGER ===== */
-.messenger{
-position:fixed;
-bottom:25px;
-right:25px;
-background:#0084ff;
-width:65px;
-height:65px;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:50%;
-text-decoration:none;
-font-size:26px;
-color:white;
-box-shadow:0 0 40px rgba(0,132,255,0.9);
-transition:0.4s;
-}
-
-.messenger:hover{
-transform:scale(1.15);
+margin-top:60px;
 }
 
 </style>
@@ -222,107 +106,84 @@ transform:scale(1.15);
 
 <nav>
 <div class="logo">ISM Game Store</div>
-<div class="menu">
-<a href="#games" id="navGames">Game Coins</a>
-<a href="#subs" id="navSubs">Subscriptions</a>
-<a href="#gift" id="navGift">Gift Cards</a>
-<a href="#internet" id="navInternet">Internet</a>
-<div class="lang-btn" onclick="toggleLang()">AR</div>
+<div class="cart-btn" onclick="openCart()">
+🛒 Cart (<span id="cartCount">0</span>)
 </div>
 </nav>
 
 <section class="hero">
-<div class="container">
-<h1 id="titleHero">Premium Digital Marketplace</h1>
-<p id="subtitleHero">Fast Delivery • Secure Payment • Trusted Service</p>
-</div>
+<h1>Digital Store Elite</h1>
+<p>Add products to cart and checkout</p>
 </section>
 
-<section class="section" id="games">
-<div class="container">
-<h2>🎮 Game Coins</h2>
 <div class="grid">
-<div class="card" onclick="openModal('eFootball')"><h3>eFootball</h3></div>
-<div class="card" onclick="openModal('Free Fire')"><h3>Free Fire</h3></div>
-<div class="card" onclick="openModal('TikTok Coins')"><h3>TikTok Coins</h3></div>
-</div>
-</div>
-</section>
 
-<section class="section" id="subs">
-<div class="container">
-<h2>📺 Subscriptions</h2>
-<div class="grid">
-<div class="card" onclick="openModal('PS Plus')"><h3>PS Plus</h3></div>
-<div class="card" onclick="openModal('Netflix')"><h3>Netflix</h3></div>
+<div class="card">
+<h3>eFootball Coins</h3>
+<button onclick="addToCart('eFootball Coins')">Add to Cart</button>
 </div>
-</div>
-</section>
 
-<section class="section" id="gift">
-<div class="container">
-<h2>🎁 Gift Cards</h2>
-<div class="grid">
-<div class="card" onclick="openModal('PSN Turkey')"><h3>PSN Turkey</h3></div>
+<div class="card">
+<h3>Free Fire Diamonds</h3>
+<button onclick="addToCart('Free Fire Diamonds')">Add to Cart</button>
 </div>
-</div>
-</section>
 
-<section class="section" id="internet">
-<div class="container">
-<h2>📶 Internet SIM</h2>
-<div class="grid">
-<div class="card" onclick="openModal('Internet Package')"><h3>Ooredoo & Orange</h3></div>
+<div class="card">
+<h3>PS Plus</h3>
+<button onclick="addToCart('PS Plus')">Add to Cart</button>
 </div>
+
+<div class="card">
+<h3>Netflix</h3>
+<button onclick="addToCart('Netflix')">Add to Cart</button>
 </div>
-</section>
+
+</div>
 
 <footer>
 © 2026 ISM Game Store
 </footer>
 
-<a class="messenger" href="https://m.me/61555974173704" target="_blank">💬</a>
-
-<!-- MODAL -->
-<div class="modal" id="orderModal">
-<div class="modal-content">
-<h3 id="modalTitle">Order</h3>
-<input type="text" placeholder="Your Name">
-<input type="text" placeholder="Details">
-<button onclick="sendOrder()">Send via Messenger</button>
-<button onclick="closeModal()">Cancel</button>
+<!-- CART MODAL -->
+<div class="cart-modal" id="cartModal">
+<div class="cart-content">
+<h3>Your Cart</h3>
+<ul id="cartItems"></ul>
+<button onclick="checkout()">Checkout via Messenger</button>
+<button onclick="closeCart()">Close</button>
 </div>
 </div>
 
 <script>
 
-let currentProduct="";
+let cart=[];
 
-function openModal(product){
-currentProduct=product;
-document.getElementById("modalTitle").innerText="Order: "+product;
-document.getElementById("orderModal").style.display="flex";
+function addToCart(product){
+cart.push(product);
+document.getElementById("cartCount").innerText=cart.length;
 }
 
-function closeModal(){
-document.getElementById("orderModal").style.display="none";
+function openCart(){
+document.getElementById("cartModal").style.display="flex";
+renderCart();
 }
 
-function sendOrder(){
+function closeCart(){
+document.getElementById("cartModal").style.display="none";
+}
+
+function renderCart(){
+let list=document.getElementById("cartItems");
+list.innerHTML="";
+cart.forEach(item=>{
+let li=document.createElement("li");
+li.innerText=item;
+list.appendChild(li);
+});
+}
+
+function checkout(){
 window.location.href="https://m.me/61555974173704";
-}
-
-let lang="en";
-function toggleLang(){
-if(lang==="en"){
-document.getElementById("titleHero").innerText="متجر الخدمات الرقمية";
-document.getElementById("subtitleHero").innerText="تسليم سريع • دفع آمن • خدمة موثوقة";
-lang="ar";
-}else{
-document.getElementById("titleHero").innerText="Premium Digital Marketplace";
-document.getElementById("subtitleHero").innerText="Fast Delivery • Secure Payment • Trusted Service";
-lang="en";
-}
 }
 
 </script>
