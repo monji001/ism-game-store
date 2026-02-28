@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar">
 <head>
@@ -9,49 +8,23 @@
 <style>
 body{
 margin:0;
-font-family:Arial,Helvetica,sans-serif;
+font-family:Arial, Helvetica, sans-serif;
 background:#0f0f14;
 color:white;
+text-align:center;
 }
 
 nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 30px;
+padding:15px;
 background:#14141c;
 box-shadow:0 0 15px rgba(0,255,255,0.2);
-}
-
-.logo{
 font-size:20px;
 font-weight:bold;
 color:#00f7ff;
 }
 
-.lang-btn{
-background:none;
-border:1px solid #00f7ff;
-color:#00f7ff;
-padding:5px 12px;
-border-radius:5px;
-cursor:pointer;
-}
-
-.hero{
-text-align:center;
-padding:80px 20px;
-}
-
-.hero h1{
-font-size:38px;
-color:#00f7ff;
-text-shadow:0 0 15px #00f7ff;
-}
-
 .section{
-padding:60px 20px;
-text-align:center;
+padding:50px 20px;
 }
 
 .cards{
@@ -89,8 +62,12 @@ button:hover{
 background:#00c4cc;
 }
 
+h2{
+margin-top:40px;
+}
+
 .footer{
-text-align:center;
+margin-top:50px;
 padding:20px;
 color:gray;
 }
@@ -101,7 +78,7 @@ bottom:20px;
 right:20px;
 background:#0084ff;
 color:white;
-padding:15px 18px;
+padding:15px 20px;
 border-radius:50px;
 text-decoration:none;
 font-weight:bold;
@@ -113,72 +90,23 @@ box-shadow:0 0 20px rgba(0,132,255,0.7);
 <body>
 
 <nav>
-<div class="logo">ISM Game Store</div>
-<button class="lang-btn" onclick="toggleLang()">AR / FR</button>
+ISM Game Store
 </nav>
 
-<div class="hero">
-<h1 id="title">Digital Gaming Services</h1>
-<p id="subtitle">Premium & Fast Delivery in Tunisia</p>
-</div>
+<!-- EFOOTBALL -->
 
 <div class="section">
-<h2 id="servicesTitle">Our Services</h2>
-
-<div class="cards">
-
-
-
-<div class="card">
-<h3>Xbox Game Pass</h3>
-<p>1 Month — 20 DT</p>
-</div>
-
-</div>
-</div>
-
-<div class="section">
-<h2 id="pricingTitle">Pricing</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>eFootball 260</h3>
-<p>6 DT</p>
-<button onclick="goMessenger()">Commander</button>
-</div>
-
-<div class<div class="section">
 <h2>COINS EFOOTBALL MOBILE</h2>
 
 <h3 style="color:#00ffae;">🔥 PROMO ✋</h3>
-
 <div class="cards">
-
-<div class="card">
-<h3>260 🪙</h3>
-<p>6 DT</p>
-<button onclick="goMessenger()">Commander</button>
+<div class="card"><h3>260 🪙</h3><p>6 DT</p><button onclick="goMessenger()">Commander</button></div>
+<div class="card"><h3>840 🪙</h3><p>20 DT</p><button onclick="goMessenger()">Commander</button></div>
+<div class="card"><h3>1630 🪙</h3><p>35 DT</p><button onclick="goMessenger()">Commander</button></div>
 </div>
 
-<div class="card">
-<h3>840 🪙</h3>
-<p>20 DT</p>
-<button onclick="goMessenger()">Commander</button>
-</div>
-
-<div class="card">
-<h3>1630 🪙</h3>
-<p>35 DT</p>
-<button onclick="goMessenger()">Commander</button>
-</div>
-
-</div>
-
-<h3 style="margin-top:50px;color:#ff4444;">⚠️ SANS PROMO</h3>
-
+<h3 style="color:#ff4444; margin-top:50px;">⚠️ SANS PROMO</h3>
 <div class="cards">
-
 <div class="card"><h3>130 🪙</h3><p>6 DT</p><button onclick="goMessenger()">Commander</button></div>
 <div class="card"><h3>300 🪙</h3><p>15 DT</p><button onclick="goMessenger()">Commander</button></div>
 <div class="card"><h3>550 🪙</h3><p>23 DT</p><button onclick="goMessenger()">Commander</button></div>
@@ -187,21 +115,35 @@ box-shadow:0 0 20px rgba(0,132,255,0.7);
 <div class="card"><h3>2130 🪙</h3><p>75 DT</p><button onclick="goMessenger()">Commander</button></div>
 <div class="card"><h3>3250 🪙</h3><p>110 DT</p><button onclick="goMessenger()">Commander</button></div>
 <div class="card"><h3>5700 🪙</h3><p>175 DT</p><button onclick="goMessenger()">Commander</button></div>
-
 </div>
-</div>="card">
-<h3>eFootball 840</h3>
-<p>20 DT</p>
-<button onclick="goMessenger()">Commander</button>
 </div>
 
-<div class="card">
-<h3>Game Pass</h3>
-<p>20 DT</p>
-<button onclick="goMessenger()">Commander</button>
+<!-- PS PLUS UKRAINE -->
+
+<div class="section">
+<h2>PS PLUS UKRAINE 🇺🇦</h2>
+
+<h3>ESSENTIAL</h3>
+<div class="cards">
+<div class="card"><h3>1 MONTH</h3><p>35 DT</p><button onclick="goMessenger()">Commander</button></div>
+<div class="card"><h3>3 MONTHS</h3><p>75 DT</p><button onclick="goMessenger()">Commander</button></div>
+<div class="card"><h3>12 MONTHS</h3><p>150 DT</p><button onclick="goMessenger()">Commander</button></div>
 </div>
 
+<h3 style="margin-top:50px;">EXTRA</h3>
+<div class="cards">
+<div class="card"><h3>1 MONTH</h3><p>45 DT</p><button onclick="goMessenger()">Commander</button></div>
+<div class="card"><h3>3 MONTHS</h3><p>110 DT</p><button onclick="goMessenger()">Commander</button></div>
+<div class="card"><h3>12 MONTHS</h3><p>230 DT</p><button onclick="goMessenger()">Commander</button></div>
 </div>
+
+<h3 style="margin-top:50px;">DELUXE</h3>
+<div class="cards">
+<div class="card"><h3>1 MONTH</h3><p>50 DT</p><button onclick="goMessenger()">Commander</button></div>
+<div class="card"><h3>3 MONTHS</h3><p>120 DT</p><button onclick="goMessenger()">Commander</button></div>
+<div class="card"><h3>12 MONTHS</h3><p>265 DT</p><button onclick="goMessenger()">Commander</button></div>
+</div>
+
 </div>
 
 <div class="footer">
@@ -213,24 +155,6 @@ box-shadow:0 0 20px rgba(0,132,255,0.7);
 </a>
 
 <script>
-let isArabic=false;
-
-function toggleLang(){
-isArabic=!isArabic;
-
-if(isArabic){
-document.getElementById("title").innerText="خدمات رقمية للألعاب";
-document.getElementById("subtitle").innerText="سرعة واحترافية في تونس";
-document.getElementById("servicesTitle").innerText="خدماتنا";
-document.getElementById("pricingTitle").innerText="الأسعار";
-}else{
-document.getElementById("title").innerText="Digital Gaming Services";
-document.getElementById("subtitle").innerText="Premium & Fast Delivery in Tunisia";
-document.getElementById("servicesTitle").innerText="Our Services";
-document.getElementById("pricingTitle").innerText="Pricing";
-}
-}
-
 function goMessenger(){
 window.location.href="https://m.me/61555974173704";
 }
