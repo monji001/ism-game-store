@@ -6,60 +6,116 @@
 <title>ISM Game Store</title>
 
 <style>
+
 body{
 margin:0;
-font-family:Arial;
-background:#0f0f14;
+font-family:Arial, Helvetica, sans-serif;
+background:linear-gradient(180deg,#0f0f14,#08080c);
 color:white;
 text-align:center;
 }
 
+/* NAVBAR */
 nav{
-background:#14141c;
-padding:15px;
+position:fixed;
+top:0;
+width:100%;
+background:rgba(20,20,30,0.95);
+backdrop-filter:blur(10px);
 display:flex;
-flex-wrap:wrap;
 justify-content:center;
-gap:15px;
+gap:25px;
+padding:15px 0;
+z-index:1000;
+box-shadow:0 0 15px rgba(0,255,255,0.2);
 }
 
 nav a{
 color:#00f7ff;
 text-decoration:none;
 font-weight:bold;
+transition:0.3s;
 }
 
-.section{
-padding:80px 20px;
+nav a:hover{
+color:white;
+text-shadow:0 0 10px #00f7ff;
 }
 
+/* HERO */
+.hero{
+padding-top:120px;
+padding-bottom:60px;
+}
+
+.hero h1{
+font-size:40px;
+color:#00f7ff;
+text-shadow:0 0 20px #00f7ff;
+margin-bottom:10px;
+}
+
+.hero p{
+color:gray;
+font-size:18px;
+}
+
+/* CARDS */
 .cards{
 display:flex;
 flex-direction:column;
 align-items:center;
-gap:25px;
-margin-top:40px;
+gap:30px;
+padding:20px;
 }
 
 .card{
-background:#1a1a22;
-padding:35px;
+background:#14141c;
 width:85%;
-max-width:320px;
-border-radius:12px;
-box-shadow:0 0 20px rgba(0,255,255,0.2);
+max-width:350px;
+padding:40px 20px;
+border-radius:15px;
+box-shadow:0 0 20px rgba(0,255,255,0.15);
 transition:0.3s;
+cursor:pointer;
 }
 
 .card:hover{
-transform:translateY(-5px);
+transform:translateY(-8px);
+box-shadow:0 0 30px rgba(0,255,255,0.5);
 }
 
-.card a{
-text-decoration:none;
+.card h2{
+margin:0;
+font-size:22px;
+}
+
+/* FOOTER */
+.footer{
+margin-top:60px;
+padding:20px;
+color:gray;
+font-size:14px;
+}
+
+/* MESSENGER */
+.messenger{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#0084ff;
 color:white;
-font-size:20px;
+padding:15px 20px;
+border-radius:50px;
+text-decoration:none;
 font-weight:bold;
+box-shadow:0 0 25px rgba(0,132,255,0.7);
+transition:0.3s;
+}
+
+.messenger:hover{
+transform:scale(1.08);
+background:#006fd6;
 }
 
 </style>
@@ -74,19 +130,32 @@ font-weight:bold;
 <a href="netflix.html">NETFLIX</a>
 </nav>
 
-<div class="section">
+<div class="hero">
 <h1>ISM Game Store</h1>
-<p>Select a Service</p>
+<p>Premium Digital Services in Tunisia 🇹🇳</p>
+</div>
 
 <div class="cards">
-<div class="card"><a href="efootball.html">🪙 EFOOTBALL</a></div>
-<div class="card"><a href="psplus.html">🎮 PS PLUS</a></div>
-<div class="card"><a href="netflix.html">🎁 NETFLIX</a></div>
-</div>
+
+<div class="card" onclick="location.href='efootball.html'">
+<h2>🪙 EFOOTBALL COINS</h2>
 </div>
 
-<a href="https://m.me/61555974173704" target="_blank"
-style="position:fixed;bottom:20px;right:20px;background:#0084ff;color:white;padding:14px 18px;border-radius:50px;text-decoration:none;font-weight:bold;box-shadow:0 0 20px rgba(0,132,255,0.7);z-index:999;">
+<div class="card" onclick="location.href='psplus.html'">
+<h2>🎮 PS PLUS UKRAINE</h2>
+</div>
+
+<div class="card" onclick="location.href='netflix.html'">
+<h2>🎁 NETFLIX ACCOUNTS</h2>
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 ISM Game Store — All Rights Reserved
+</div>
+
+<a class="messenger" href="https://m.me/61555974173704" target="_blank">
 💬 Messenger
 </a>
 
