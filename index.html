@@ -5,68 +5,76 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ISM Game Store</title>
 
-<meta name="description" content="Premium Digital Services in Tunisia. Game Coins, Subscriptions, Gift Cards and more.">
-
 <style>
 
-/* ===== GLOBAL ===== */
-html{
-scroll-behavior:smooth;
+/* ===== LOADER ===== */
+#loader{
+position:fixed;
+width:100%;
+height:100%;
+background:#07080f;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+flex-direction:column;
 }
+
+.loader-text{
+color:#00f7ff;
+font-size:28px;
+letter-spacing:3px;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+0%{opacity:0.3;}
+50%{opacity:1;}
+100%{opacity:0.3;}
+}
+
+/* ===== GLOBAL ===== */
+html{scroll-behavior:smooth;}
 
 body{
 margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:linear-gradient(-45deg,#07080f,#0d1120,#0a0f1c,#101726);
-background-size:400% 400%;
-animation:gradientMove 12s ease infinite;
+font-family:Arial, sans-serif;
+background:#07080f;
 color:white;
 overflow-x:hidden;
 }
 
-@keyframes gradientMove{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+/* ===== PARTICLE BG ===== */
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
 }
 
-.container{
-width:90%;
-max-width:1200px;
-margin:auto;
-}
-
-/* ===== NAVBAR ===== */
+/* ===== NAV ===== */
 nav{
 position:fixed;
 top:0;
 width:100%;
-background:rgba(10,12,20,0.7);
-backdrop-filter:blur(12px);
+background:rgba(10,12,20,0.6);
+backdrop-filter:blur(15px);
 display:flex;
 justify-content:space-between;
-align-items:center;
 padding:15px 30px;
 z-index:1000;
-border-bottom:1px solid rgba(0,255,255,0.2);
 }
 
 .logo{
 color:#00f7ff;
 font-weight:bold;
-font-size:18px;
 text-shadow:0 0 10px #00f7ff;
-}
-
-.menu{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
 }
 
 .menu a{
 color:#00f7ff;
 text-decoration:none;
+margin-left:20px;
 font-weight:bold;
 transition:0.3s;
 }
@@ -79,13 +87,13 @@ text-shadow:0 0 15px #00f7ff;
 /* ===== HERO ===== */
 .hero{
 padding-top:150px;
-padding-bottom:100px;
 text-align:center;
+padding-bottom:120px;
 }
 
 .hero h1{
-font-size:48px;
-background:linear-gradient(90deg,#00f7ff,#ffffff,#00f7ff);
+font-size:55px;
+background:linear-gradient(90deg,#00f7ff,#fff,#00f7ff);
 -webkit-background-clip:text;
 color:transparent;
 animation:shine 3s linear infinite;
@@ -99,86 +107,75 @@ animation:shine 3s linear infinite;
 .hero p{
 color:#ccc;
 font-size:18px;
-margin-top:15px;
 }
 
 /* ===== SECTION ===== */
 .section{
-padding:70px 0;
+padding:80px 0;
+text-align:center;
 }
 
 .section h2{
-text-align:center;
-margin-bottom:50px;
 color:#00f7ff;
+margin-bottom:50px;
 font-size:30px;
-text-shadow:0 0 15px #00f7ff;
 }
 
 /* ===== GRID ===== */
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:35px;
+gap:40px;
+width:90%;
+max-width:1200px;
+margin:auto;
 }
 
 /* ===== CARD ===== */
 .card{
-background:rgba(16,18,27,0.8);
+background:rgba(20,25,40,0.8);
 border-radius:20px;
-padding:40px 25px;
-text-align:center;
+padding:50px 20px;
 cursor:pointer;
-transition:0.4s;
+transition:0.5s;
 position:relative;
 overflow:hidden;
-border:1px solid rgba(0,255,255,0.15);
-}
-
-.card:before{
-content:"";
-position:absolute;
-top:-50%;
-left:-50%;
-width:200%;
-height:200%;
-background:radial-gradient(circle,rgba(0,255,255,0.15),transparent 60%);
-transform:rotate(25deg);
+border:1px solid rgba(0,255,255,0.2);
 }
 
 .card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 50px rgba(0,255,255,0.6);
+transform:translateY(-15px) scale(1.03);
+box-shadow:0 0 60px rgba(0,255,255,0.8);
 }
 
 .card h3{
-margin:15px 0;
-font-size:22px;
+margin-bottom:15px;
 }
 
-.card p{
-color:#aaa;
-font-size:14px;
-}
-
-/* ===== BADGE ===== */
 .badge{
 position:absolute;
 top:15px;
 right:15px;
 background:#00f7ff;
 color:black;
-padding:5px 12px;
+padding:6px 14px;
+border-radius:30px;
 font-size:12px;
-border-radius:20px;
 font-weight:bold;
+}
+
+/* ===== COUNTER ===== */
+.counter{
+font-size:40px;
+color:#00f7ff;
+margin-top:20px;
 }
 
 /* ===== FOOTER ===== */
 footer{
-padding:50px;
-text-align:center;
+padding:60px;
 background:#05060a;
+text-align:center;
 color:#777;
 margin-top:60px;
 }
@@ -189,16 +186,16 @@ position:fixed;
 bottom:25px;
 right:25px;
 background:#0084ff;
-width:65px;
-height:65px;
+width:70px;
+height:70px;
 display:flex;
 align-items:center;
 justify-content:center;
 border-radius:50%;
 text-decoration:none;
-font-size:26px;
+font-size:30px;
 color:white;
-box-shadow:0 0 40px rgba(0,132,255,0.9);
+box-shadow:0 0 50px rgba(0,132,255,0.9);
 transition:0.4s;
 }
 
@@ -208,103 +205,137 @@ transform:scale(1.2);
 
 </style>
 </head>
-
 <body>
+
+<div id="loader">
+<div class="loader-text">ISM GAME STORE</div>
+</div>
+
+<canvas id="bg"></canvas>
 
 <nav>
 <div class="logo">ISM Game Store</div>
 <div class="menu">
-<a href="#games">Game Coins</a>
-<a href="#subs">Subscriptions</a>
-<a href="#gift">Gift Cards</a>
+<a href="#games">Games</a>
+<a href="#subs">Subs</a>
+<a href="#gift">Gift</a>
 <a href="#internet">Internet</a>
 </div>
 </nav>
 
 <section class="hero">
-<div class="container">
-<h1>Premium Digital Marketplace</h1>
-<p>Fast Delivery • Secure Payments • Trusted Service</p>
-</div>
+<h1>Digital Marketplace Elite</h1>
+<p>Fast • Secure • Professional</p>
+<div class="counter" id="counter">0+</div>
 </section>
 
 <section class="section" id="games">
-<div class="container">
-<h2>🎮 Game Coins</h2>
+<h2>Game Coins</h2>
 <div class="grid">
-
 <div class="card" onclick="location.href='efootball.html'">
-<div class="badge">BEST SELLER</div>
-<h3>⚽ eFootball</h3>
-<p>Promo & Normal Packs</p>
+<div class="badge">BEST</div>
+<h3>eFootball</h3>
 </div>
-
 <div class="card" onclick="location.href='freefire.html'">
-<h3>💎 Free Fire</h3>
-<p>Diamonds + Membership</p>
+<h3>Free Fire</h3>
 </div>
-
 <div class="card" onclick="location.href='tiktok.html'">
-<h3>🎵 TikTok Coins</h3>
-<p>Top-Up Packages</p>
-</div>
-
+<h3>TikTok Coins</h3>
 </div>
 </div>
 </section>
 
 <section class="section" id="subs">
-<div class="container">
-<h2>📺 Subscriptions</h2>
+<h2>Subscriptions</h2>
 <div class="grid">
-
 <div class="card" onclick="location.href='psplus.html'">
-<h3>🎮 PS Plus</h3>
-<p>Ukraine Plans</p>
+<h3>PS Plus</h3>
 </div>
-
 <div class="card" onclick="location.href='netflix.html'">
-<h3>🎬 Netflix</h3>
-<p>Profile / Full Account</p>
-</div>
-
+<h3>Netflix</h3>
 </div>
 </div>
 </section>
 
 <section class="section" id="gift">
-<div class="container">
-<h2>🎁 Gift Cards</h2>
+<h2>Gift Cards</h2>
 <div class="grid">
-
 <div class="card" onclick="location.href='psn-tr.html'">
-<h3>🇹🇷 PSN Turkey</h3>
-<p>250 TL → 2000 TL</p>
-</div>
-
+<h3>PSN Turkey</h3>
 </div>
 </div>
 </section>
 
 <section class="section" id="internet">
-<div class="container">
-<h2>📶 Internet SIM</h2>
+<h2>Internet</h2>
 <div class="grid">
-
 <div class="card" onclick="location.href='internet.html'">
 <h3>Ooredoo & Orange</h3>
-<p>25 Go → 200 Go</p>
-</div>
-
 </div>
 </div>
 </section>
 
 <footer>
-© 2026 ISM Game Store • All Rights Reserved
+© 2026 ISM Game Store — GOD MODE EDITION
 </footer>
 
 <a class="messenger" href="https://m.me/61555974173704" target="_blank">💬</a>
+
+<script>
+
+/* Loader */
+window.onload = function(){
+setTimeout(()=>{document.getElementById("loader").style.display="none";},1500);
+}
+
+/* Counter Animation */
+let count=0;
+let counter=document.getElementById("counter");
+let interval=setInterval(()=>{
+count+=10;
+counter.innerText=count+"+";
+if(count>=500){
+clearInterval(interval);
+}
+},30);
+
+/* Particle Background */
+const canvas=document.getElementById("bg");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<80;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2,
+d:Math.random()*1
+});
+}
+
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="rgba(0,255,255,0.5)";
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2,true);
+ctx.fill();
+});
+update();
+}
+
+function update(){
+particles.forEach(p=>{
+p.y+=p.d;
+if(p.y>canvas.height){p.y=0;}
+});
+}
+
+setInterval(draw,30);
+
+</script>
 
 </body>
 </html>
