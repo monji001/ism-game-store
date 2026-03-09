@@ -205,6 +205,7 @@ transform:scale(1.2);
 
 </style>
 </head>
+
 <body>
 
 <div id="loader">
@@ -229,49 +230,70 @@ transform:scale(1.2);
 <div class="counter" id="counter">0+</div>
 </section>
 
+<!-- GAME COINS -->
 <section class="section" id="games">
 <h2>Game Coins</h2>
+
 <div class="grid">
+
+<div class="card" onclick="location.href='pubg.html'">
+<div class="badge">NEW</div>
+<h3>PUBG Mobile UC</h3>
+</div>
+
 <div class="card" onclick="location.href='efootball.html'">
 <div class="badge">BEST</div>
 <h3>eFootball</h3>
 </div>
+
 <div class="card" onclick="location.href='freefire.html'">
 <h3>Free Fire</h3>
 </div>
+
 <div class="card" onclick="location.href='tiktok.html'">
 <h3>TikTok Coins</h3>
 </div>
+
 </div>
 </section>
 
+<!-- SUBSCRIPTIONS -->
 <section class="section" id="subs">
 <h2>Subscriptions</h2>
 <div class="grid">
+
 <div class="card" onclick="location.href='psplus.html'">
 <h3>PS Plus</h3>
 </div>
+
 <div class="card" onclick="location.href='netflix.html'">
 <h3>Netflix</h3>
 </div>
+
 </div>
 </section>
 
+<!-- GIFT CARDS -->
 <section class="section" id="gift">
 <h2>Gift Cards</h2>
 <div class="grid">
+
 <div class="card" onclick="location.href='psn-tr.html'">
 <h3>PSN Turkey</h3>
 </div>
+
 </div>
 </section>
 
+<!-- INTERNET -->
 <section class="section" id="internet">
 <h2>Internet</h2>
 <div class="grid">
+
 <div class="card" onclick="location.href='internet.html'">
 <h3>Ooredoo & Orange</h3>
 </div>
+
 </div>
 </section>
 
@@ -285,27 +307,34 @@ transform:scale(1.2);
 
 /* Loader */
 window.onload = function(){
-setTimeout(()=>{document.getElementById("loader").style.display="none";},1500);
+setTimeout(()=>{
+document.getElementById("loader").style.display="none";
+},1500);
 }
 
 /* Counter Animation */
 let count=0;
 let counter=document.getElementById("counter");
+
 let interval=setInterval(()=>{
 count+=10;
 counter.innerText=count+"+";
+
 if(count>=500){
 clearInterval(interval);
 }
+
 },30);
 
 /* Particle Background */
 const canvas=document.getElementById("bg");
 const ctx=canvas.getContext("2d");
+
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 
 let particles=[];
+
 for(let i=0;i<80;i++){
 particles.push({
 x:Math.random()*canvas.width,
@@ -316,21 +345,33 @@ d:Math.random()*1
 }
 
 function draw(){
+
 ctx.clearRect(0,0,canvas.width,canvas.height);
+
 ctx.fillStyle="rgba(0,255,255,0.5)";
+
 particles.forEach(p=>{
+
 ctx.beginPath();
 ctx.arc(p.x,p.y,p.r,0,Math.PI*2,true);
 ctx.fill();
+
 });
+
 update();
 }
 
 function update(){
+
 particles.forEach(p=>{
 p.y+=p.d;
-if(p.y>canvas.height){p.y=0;}
+
+if(p.y>canvas.height){
+p.y=0;
+}
+
 });
+
 }
 
 setInterval(draw,30);
