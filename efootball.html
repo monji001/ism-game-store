@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Efootball Coins - ISM Game Store</title>
 
 <style>
@@ -128,14 +130,6 @@ button:hover{
 background:white;
 }
 
-/* ===== SECTION TITLE ===== */
-
-.section-title{
-text-align:center;
-margin:50px 0 30px 0;
-font-size:22px;
-}
-
 /* ===== FOOTER ===== */
 
 footer{
@@ -170,11 +164,13 @@ transform:scale(1.15);
 }
 
 </style>
+
 </head>
 
 <body>
 
 <nav>
+
 <div class="logo">ISM Game Store</div>
 
 <div class="menu">
@@ -183,50 +179,68 @@ transform:scale(1.15);
 <a href="netflix.html">NETFLIX</a>
 <span class="lang-switch" onclick="toggleLang()">AR | FR | EN</span>
 </div>
+
 </nav>
 
 <section class="header">
+
 <div class="container">
 <h1 id="pageTitle">Efootball Mobile Coins</h1>
 </div>
+
 </section>
 
 <div class="container">
 
-<div class="section-title" id="promoTitle">🔥 PROMO</div>
 <div class="grid">
 
 <div class="card">
-<h3>260 🪙</h3>
+<h3>130 🪙</h3>
 <div class="price">6 DT</div>
-<button onclick="order()">Order</button>
+<button onclick="order('130 Coins')">Order</button>
 </div>
 
 <div class="card">
-<h3>840 🪙</h3>
-<div class="price">20 DT</div>
-<button onclick="order()">Order</button>
+<h3>300 🪙</h3>
+<div class="price">15 DT</div>
+<button onclick="order('300 Coins')">Order</button>
 </div>
 
 <div class="card">
-<h3>1630 🪙</h3>
-<div class="price">35 DT</div>
-<button onclick="order()">Order</button>
+<h3>550 🪙</h3>
+<div class="price">23 DT</div>
+<button onclick="order('550 Coins')">Order</button>
 </div>
 
+<div class="card">
+<h3>750 🪙</h3>
+<div class="price">28 DT</div>
+<button onclick="order('750 Coins')">Order</button>
 </div>
 
-<div class="section-title" id="normalTitle">⚠️ Without Promo</div>
-<div class="grid">
+<div class="card">
+<h3>1040 🪙</h3>
+<div class="price">38 DT</div>
+<button onclick="order('1040 Coins')">Order</button>
+</div>
 
-<div class="card"><h3>130 🪙</h3><div class="price">6 DT</div><button onclick="order()">Order</button></div>
-<div class="card"><h3>300 🪙</h3><div class="price">15 DT</div><button onclick="order()">Order</button></div>
-<div class="card"><h3>550 🪙</h3><div class="price">23 DT</div><button onclick="order()">Order</button></div>
-<div class="card"><h3>750 🪙</h3><div class="price">28 DT</div><button onclick="order()">Order</button></div>
-<div class="card"><h3>1040 🪙</h3><div class="price">38 DT</div><button onclick="order()">Order</button></div>
-<div class="card"><h3>2130 🪙</h3><div class="price">75 DT</div><button onclick="order()">Order</button></div>
-<div class="card"><h3>3250 🪙</h3><div class="price">110 DT</div><button onclick="order()">Order</button></div>
-<div class="card"><h3>5700 🪙</h3><div class="price">175 DT</div><button onclick="order()">Order</button></div>
+<div class="card">
+<h3>2130 🪙</h3>
+<div class="price">75 DT</div>
+<button onclick="order('2130 Coins')">Order</button>
+</div>
+
+<div class="card">
+<h3>3250 🪙</h3>
+<div class="price">110 DT</div>
+<button onclick="order('3250 Coins')">Order</button>
+</div>
+
+<div class="card">
+<h3>5700 🪙</h3>
+<div class="price">175 DT</div>
+<button onclick="order('5700 Coins')">Order</button>
+</div>
 
 </div>
 
@@ -240,29 +254,41 @@ transform:scale(1.15);
 
 <script>
 
-function order(){
-window.location.href="https://m.me/61555974173704";
+function order(pack){
+
+let message="Hello, I want to order "+pack+" eFootball Coins";
+
+let url="https://m.me/61555974173704?ref="+encodeURIComponent(message);
+
+window.open(url,'_blank');
+
 }
 
 let lang="en";
 
 function toggleLang(){
+
 if(lang==="en"){
+
 document.getElementById("pageTitle").innerText="كوينز eFootball موبايل";
-document.getElementById("promoTitle").innerText="🔥 عرض خاص";
-document.getElementById("normalTitle").innerText="⚠️ بدون عرض";
 lang="ar";
-}else if(lang==="ar"){
-document.getElementById("pageTitle").innerText="Coins eFootball Mobile";
-document.getElementById("promoTitle").innerText="🔥 Promotion";
-document.getElementById("normalTitle").innerText="⚠️ Sans Promotion";
-lang="fr";
-}else{
-document.getElementById("pageTitle").innerText="Efootball Mobile Coins";
-document.getElementById("promoTitle").innerText="🔥 PROMO";
-document.getElementById("normalTitle").innerText="⚠️ Without Promo";
-lang="en";
+
 }
+
+else if(lang==="ar"){
+
+document.getElementById("pageTitle").innerText="Coins eFootball Mobile";
+lang="fr";
+
+}
+
+else{
+
+document.getElementById("pageTitle").innerText="Efootball Mobile Coins";
+lang="en";
+
+}
+
 }
 
 </script>
