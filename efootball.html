@@ -1,297 +1,245 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="ltr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eFootball Coins | ISM STORE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #00f7ff;
+            --accent: #7000ff;
+            --bg-dark: #07080f;
+            --card-bg: rgba(20, 25, 40, 0.7);
+        }
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        /* ===== GLOBAL ===== */
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-dark);
+            color: white; overflow-x: hidden;
+            background-image: radial-gradient(circle at 10% 20%, rgba(0, 247, 255, 0.05) 0%, transparent 50%);
+        }
 
-<title>Efootball Coins - ISM Game Store</title>
+        .container { width: 90%; max-width: 1200px; margin: auto; }
 
-<style>
+        /* ===== NAV (متناسق مع الرئيسية) ===== */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(7, 8, 15, 0.85);
+            backdrop-filter: blur(15px);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; z-index: 1000; box-sizing: border-box;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.1);
+        }
 
-/* ===== BASE ===== */
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary); font-weight: bold; font-size: 1.2rem;
+            text-decoration: none;
+        }
 
-body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:#07080f;
-color:white;
-overflow-x:hidden;
-}
+        .btn-back {
+            color: #fff; text-decoration: none; font-size: 13px;
+            border: 1px solid var(--primary); padding: 8px 15px;
+            border-radius: 20px; transition: 0.3s;
+        }
 
-.container{
-width:90%;
-max-width:1200px;
-margin:auto;
-}
+        .btn-back:hover { background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary); }
 
-/* ===== NAVBAR ===== */
+        /* ===== HEADER ===== */
+        .header {
+            padding: 140px 20px 60px; text-align: center;
+        }
 
-nav{
-position:fixed;
-top:0;
-width:100%;
-background:rgba(10,12,20,0.95);
-backdrop-filter:blur(12px);
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 30px;
-z-index:1000;
-box-shadow:0 0 20px rgba(0,255,255,0.2);
-}
+        .header h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(24px, 5vw, 45px);
+            background: linear-gradient(90deg, #fff, var(--primary));
+            -webkit-background-clip: text; color: transparent;
+            margin-bottom: 10px;
+        }
 
-.logo{
-color:#00f7ff;
-font-weight:bold;
-font-size:18px;
-}
+        .header p { color: #888; letter-spacing: 1px; }
 
-.menu{
-display:flex;
-gap:25px;
-}
+        /* ===== GRID & CARDS ===== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 25px; padding-bottom: 80px;
+        }
 
-.menu a{
-color:#00f7ff;
-text-decoration:none;
-font-weight:bold;
-transition:0.3s;
-}
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 20px; border-radius: 20px;
+            text-align: center; transition: 0.4s;
+            position: relative; overflow: hidden;
+        }
 
-.menu a:hover{
-color:white;
-text-shadow:0 0 12px #00f7ff;
-}
+        .card::before {
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(0, 247, 255, 0.1) 0%, transparent 70%);
+            opacity: 0; transition: 0.5s;
+        }
 
-.lang-switch{
-cursor:pointer;
-color:#00f7ff;
-font-size:14px;
-}
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 247, 255, 0.15);
+        }
 
-/* ===== HEADER ===== */
+        .card:hover::before { opacity: 1; }
 
-.header{
-padding-top:120px;
-padding-bottom:60px;
-text-align:center;
-}
+        .card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px; margin: 0 0 10px;
+            color: #fff; display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
 
-.header h1{
-font-size:36px;
-color:#00f7ff;
-text-shadow:0 0 20px #00f7ff;
-}
+        .coin-icon { color: #ffcc00; font-size: 20px; }
 
-/* ===== GRID ===== */
+        .price {
+            font-size: 28px; color: var(--primary);
+            font-weight: bold; margin-bottom: 25px;
+            font-family: 'Orbitron', sans-serif;
+        }
 
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
-padding-bottom:60px;
-}
+        .btn-order {
+            background: transparent; border: 2px solid var(--primary);
+            color: var(--primary); padding: 12px 30px; border-radius: 30px;
+            font-weight: bold; cursor: pointer; transition: 0.3s;
+            width: 80%; text-transform: uppercase; letter-spacing: 1px;
+        }
 
-.card{
-background:#10121b;
-padding:30px;
-border-radius:14px;
-text-align:center;
-transition:0.4s;
-box-shadow:0 0 15px rgba(0,255,255,0.1);
-}
+        .card:hover .btn-order {
+            background: var(--primary); color: #000;
+            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.4);
+        }
 
-.card:hover{
-transform:translateY(-6px);
-box-shadow:0 0 30px rgba(0,255,255,0.6);
-}
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 40px; background: #030408; text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05); color: #555;
+        }
 
-.card h3{
-margin:0 0 10px 0;
-}
+        /* ===== MESSENGER ===== */
+        .messenger {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #0084ff; width: 60px; height: 60px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none;
+            box-shadow: 0 10px 25px rgba(0, 132, 255, 0.4);
+            transition: 0.4s; z-index: 2000;
+        }
 
-.price{
-color:#00f7ff;
-font-size:18px;
-margin-bottom:10px;
-}
+        .messenger:hover { transform: scale(1.1); }
 
-button{
-background:#00f7ff;
-border:none;
-padding:10px 20px;
-border-radius:25px;
-cursor:pointer;
-font-weight:bold;
-}
-
-button:hover{
-background:white;
-}
-
-/* ===== FOOTER ===== */
-
-footer{
-padding:30px;
-text-align:center;
-color:#777;
-background:#05060a;
-}
-
-/* ===== MESSENGER FLOAT ===== */
-
-.messenger{
-position:fixed;
-bottom:25px;
-right:25px;
-background:#0084ff;
-width:60px;
-height:60px;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:50%;
-text-decoration:none;
-font-size:24px;
-color:white;
-box-shadow:0 0 30px rgba(0,132,255,0.8);
-transition:0.4s;
-}
-
-.messenger:hover{
-transform:scale(1.15);
-}
-
-</style>
-
+    </style>
 </head>
-
 <body>
 
 <nav>
-
-<div class="logo">ISM Game Store</div>
-
-<div class="menu">
-<a href="index.html">HOME</a>
-<a href="psplus.html">PS PLUS</a>
-<a href="netflix.html">NETFLIX</a>
-<span class="lang-switch" onclick="toggleLang()">AR | FR | EN</span>
-</div>
-
+    <a href="index.html" class="logo">ISM STORE</a>
+    <div style="display: flex; gap: 15px; align-items: center;">
+        <span onclick="toggleLang()" style="cursor:pointer; font-size: 12px; color: var(--primary);">AR | EN</span>
+        <a href="index.html" class="btn-back">HOME</a>
+    </div>
 </nav>
 
 <section class="header">
-
-<div class="container">
-<h1 id="pageTitle">Efootball Mobile Coins</h1>
-</div>
-
+    <div class="container">
+        <p>KONAMI OFFICIAL RECHARGE</p>
+        <h1 id="pageTitle">eFootball Mobile Coins</h1>
+    </div>
 </section>
 
 <div class="container">
+    <div class="grid">
+        <div class="card">
+            <h3>130 <span class="coin-icon">🪙</span></h3>
+            <div class="price">6 DT</div>
+            <button class="btn-order" onclick="order('130 Coins')">ORDER NOW</button>
+        </div>
 
-<div class="grid">
+        <div class="card">
+            <h3>300 <span class="coin-icon">🪙</span></h3>
+            <div class="price">15 DT</div>
+            <button class="btn-order" onclick="order('300 Coins')">ORDER NOW</button>
+        </div>
 
-<div class="card">
-<h3>130 🪙</h3>
-<div class="price">6 DT</div>
-<button onclick="order('130 Coins')">Order</button>
-</div>
+        <div class="card">
+            <h3>550 <span class="coin-icon">🪙</span></h3>
+            <div class="price">23 DT</div>
+            <button class="btn-order" onclick="order('550 Coins')">ORDER NOW</button>
+        </div>
 
-<div class="card">
-<h3>300 🪙</h3>
-<div class="price">15 DT</div>
-<button onclick="order('300 Coins')">Order</button>
-</div>
+        <div class="card">
+            <h3>750 <span class="coin-icon">🪙</span></h3>
+            <div class="price">28 DT</div>
+            <button class="btn-order" onclick="order('750 Coins')">ORDER NOW</button>
+        </div>
 
-<div class="card">
-<h3>550 🪙</h3>
-<div class="price">23 DT</div>
-<button onclick="order('550 Coins')">Order</button>
-</div>
+        <div class="card">
+            <h3>1040 <span class="coin-icon">🪙</span></h3>
+            <div class="price">38 DT</div>
+            <button class="btn-order" onclick="order('1040 Coins')">ORDER NOW</button>
+        </div>
 
-<div class="card">
-<h3>750 🪙</h3>
-<div class="price">28 DT</div>
-<button onclick="order('750 Coins')">Order</button>
-</div>
+        <div class="card">
+            <h3>2130 <span class="coin-icon">🪙</span></h3>
+            <div class="price">75 DT</div>
+            <button class="btn-order" onclick="order('2130 Coins')">ORDER NOW</button>
+        </div>
 
-<div class="card">
-<h3>1040 🪙</h3>
-<div class="price">38 DT</div>
-<button onclick="order('1040 Coins')">Order</button>
-</div>
+        <div class="card">
+            <h3>3250 <span class="coin-icon">🪙</span></h3>
+            <div class="price">110 DT</div>
+            <button class="btn-order" onclick="order('3250 Coins')">ORDER NOW</button>
+        </div>
 
-<div class="card">
-<h3>2130 🪙</h3>
-<div class="price">75 DT</div>
-<button onclick="order('2130 Coins')">Order</button>
-</div>
-
-<div class="card">
-<h3>3250 🪙</h3>
-<div class="price">110 DT</div>
-<button onclick="order('3250 Coins')">Order</button>
-</div>
-
-<div class="card">
-<h3>5700 🪙</h3>
-<div class="price">175 DT</div>
-<button onclick="order('5700 Coins')">Order</button>
-</div>
-
-</div>
-
+        <div class="card" style="border-color: var(--accent);">
+            <div style="position:absolute; top:10px; right:10px; background:var(--accent); font-size:10px; padding:2px 8px; border-radius:5px;">BEST VALUE</div>
+            <h3>5700 <span class="coin-icon">🪙</span></h3>
+            <div class="price">175 DT</div>
+            <button class="btn-order" onclick="order('5700 Coins')">ORDER NOW</button>
+        </div>
+    </div>
 </div>
 
 <footer>
-© 2026 ISM Game Store
+    <p>© 2026 ISM Game Store — Pro Gaming Services</p>
 </footer>
 
-<a class="messenger" href="https://m.me/61555974173704" target="_blank">💬</a>
+<a class="messenger" href="https://m.me/61555974173704" target="_blank">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.477 2 2 6.145 2 11.258c0 2.908 1.462 5.5 3.746 7.225V22l3.356-1.843c.917.254 1.887.393 2.898.393 5.523 0 10-4.146 10-9.258S17.523 2 12 2zm1.293 12.303l-2.586-2.754-5.04 2.754 5.546-5.89 2.586 2.754 5.04-2.754-5.546 5.89z"/></svg>
+</a>
 
 <script>
+    // نظام الطلب المطور
+    function order(pack) {
+        let message = encodeURIComponent("مرحباً، أود طلب باقة: " + pack + " eFootball Coins");
+        let url = "https://m.me/61555974173704?text=" + message;
+        window.open(url, '_blank');
+    }
 
-function order(pack){
-
-let message="Hello, I want to order "+pack+" eFootball Coins";
-
-let url="https://m.me/61555974173704?ref="+encodeURIComponent(message);
-
-window.open(url,'_blank');
-
-}
-
-let lang="en";
-
-function toggleLang(){
-
-if(lang==="en"){
-
-document.getElementById("pageTitle").innerText="كوينز eFootball موبايل";
-lang="ar";
-
-}
-
-else if(lang==="ar"){
-
-document.getElementById("pageTitle").innerText="Coins eFootball Mobile";
-lang="fr";
-
-}
-
-else{
-
-document.getElementById("pageTitle").innerText="Efootball Mobile Coins";
-lang="en";
-
-}
-
-}
-
+    // نظام تبديل اللغة البسيط
+    let lang = "en";
+    function toggleLang() {
+        const title = document.getElementById("pageTitle");
+        if(lang === "en") {
+            title.innerText = "كوينز eFootball موبايل";
+            lang = "ar";
+        } else {
+            title.innerText = "eFootball Mobile Coins";
+            lang = "en";
+        }
+    }
 </script>
 
 </body>
 </html>
+
