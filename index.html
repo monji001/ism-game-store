@@ -1,382 +1,341 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ISM Game Store</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISM Game Store | Digital Marketplace</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #00f7ff;
+            --accent: #7000ff;
+            --bg-dark: #07080f;
+            --card-bg: rgba(20, 25, 40, 0.7);
+        }
 
-<style>
+        /* ===== LOADER ===== */
+        #loader {
+            position: fixed; width: 100%; height: 100%;
+            background: var(--bg-dark);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999; flex-direction: column;
+        }
 
-/* ===== LOADER ===== */
-#loader{
-position:fixed;
-width:100%;
-height:100%;
-background:#07080f;
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:9999;
-flex-direction:column;
-}
+        .loader-content {
+            text-align: center;
+        }
 
-.loader-text{
-color:#00f7ff;
-font-size:28px;
-letter-spacing:3px;
-animation:pulse 1.5s infinite;
-}
+        .loader-circle {
+            width: 50px; height: 50px;
+            border: 3px solid transparent;
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
 
-@keyframes pulse{
-0%{opacity:0.3;}
-50%{opacity:1;}
-100%{opacity:0.3;}
-}
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ===== GLOBAL ===== */
-html{scroll-behavior:smooth;}
+        /* ===== GLOBAL ===== */
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-dark);
+            color: white; overflow-x: hidden;
+        }
 
-body{
-margin:0;
-font-family:Arial, sans-serif;
-background:#07080f;
-color:white;
-overflow-x:hidden;
-}
+        canvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.6; }
 
-/* ===== PARTICLE BG ===== */
-canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
-}
+        /* ===== NAV ===== */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(7, 8, 15, 0.8);
+            backdrop-filter: blur(15px);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; z-index: 1000; box-sizing: border-box;
+            border-bottom: 1px solid rgba(0, 247, 255, 0.1);
+        }
 
-/* ===== NAV ===== */
-nav{
-position:fixed;
-top:0;
-width:100%;
-background:rgba(10,12,20,0.6);
-backdrop-filter:blur(15px);
-display:flex;
-justify-content:space-between;
-padding:15px 30px;
-z-index:1000;
-}
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary); font-weight: bold; font-size: 1.5rem;
+            text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+        }
 
-.logo{
-color:#00f7ff;
-font-weight:bold;
-text-shadow:0 0 10px #00f7ff;
-}
+        .menu a {
+            color: #fff; text-decoration: none; margin-left: 25px;
+            font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
+            transition: 0.3s; opacity: 0.8;
+        }
 
-.menu a{
-color:#00f7ff;
-text-decoration:none;
-margin-left:20px;
-font-weight:bold;
-transition:0.3s;
-}
+        .menu a:hover { color: var(--primary); opacity: 1; text-shadow: 0 0 10px var(--primary); }
 
-.menu a:hover{
-color:white;
-text-shadow:0 0 15px #00f7ff;
-}
+        /* ===== HERO ===== */
+        .hero {
+            padding: 180px 20px 100px; text-align: center;
+            background: radial-gradient(circle at center, rgba(112, 0, 255, 0.1) 0%, transparent 70%);
+        }
 
-/* ===== HERO ===== */
-.hero{
-padding-top:150px;
-text-align:center;
-padding-bottom:120px;
-}
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(30px, 8vw, 65px);
+            margin: 0; text-transform: uppercase;
+            background: linear-gradient(90deg, #00f7ff, #7000ff, #00f7ff);
+            background-size: 200% auto;
+            -webkit-background-clip: text; color: transparent;
+            animation: shine 4s linear infinite;
+        }
 
-.hero h1{
-font-size:55px;
-background:linear-gradient(90deg,#00f7ff,#fff,#00f7ff);
--webkit-background-clip:text;
-color:transparent;
-animation:shine 3s linear infinite;
-}
+        .hero p { color: #aaa; font-size: 1.1rem; letter-spacing: 2px; margin-top: 10px; }
 
-@keyframes shine{
-0%{background-position:0%;}
-100%{background-position:200%;}
-}
+        .counter-box { margin-top: 30px; font-family: 'Orbitron', sans-serif; }
+        .counter { font-size: 3rem; color: var(--primary); font-weight: bold; }
 
-.hero p{
-color:#ccc;
-font-size:18px;
-}
+        /* ===== SECTIONS ===== */
+        .section { padding: 60px 5%; max-width: 1200px; margin: auto; }
+        .section h2 {
+            font-family: 'Orbitron', sans-serif;
+            text-align: left; border-left: 4px solid var(--primary);
+            padding-left: 15px; margin-bottom: 40px; font-size: 1.8rem;
+        }
 
-/* ===== SECTION ===== */
-.section{
-padding:80px 0;
-text-align:center;
-}
+        /* ===== GRID & CARDS ===== */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
 
-.section h2{
-color:#00f7ff;
-margin-bottom:50px;
-font-size:30px;
-}
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px; padding: 30px 20px;
+            text-align: center; cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative; overflow: hidden;
+            display: flex; flex-direction: column; align-items: center;
+        }
 
-/* ===== GRID ===== */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:40px;
-width:90%;
-max-width:1200px;
-margin:auto;
-}
+        .card::before {
+            content: ''; position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: 0.5s;
+        }
 
-/* ===== CARD ===== */
-.card{
-background:rgba(20,25,40,0.8);
-border-radius:20px;
-padding:50px 20px;
-cursor:pointer;
-transition:0.5s;
-position:relative;
-overflow:hidden;
-border:1px solid rgba(0,255,255,0.2);
-}
+        .card:hover::before { left: 100%; }
 
-.card:hover{
-transform:translateY(-15px) scale(1.03);
-box-shadow:0 0 60px rgba(0,255,255,0.8);
-}
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 247, 255, 0.15);
+            background: rgba(25, 30, 50, 0.9);
+        }
 
-.card h3{
-margin-bottom:15px;
-}
+        /* أيقونة وهمية للمنتج لجعل الشكل أفضل */
+        .card-icon {
+            width: 60px; height: 60px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border-radius: 12px; margin-bottom: 20px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
 
-.badge{
-position:absolute;
-top:15px;
-right:15px;
-background:#00f7ff;
-color:black;
-padding:6px 14px;
-border-radius:30px;
-font-size:12px;
-font-weight:bold;
-}
+        .card h3 { margin: 10px 0; font-size: 1.3rem; }
+        .card p { font-size: 0.9rem; color: #888; margin-bottom: 20px; }
 
-/* ===== COUNTER ===== */
-.counter{
-font-size:40px;
-color:#00f7ff;
-margin-top:20px;
-}
+        .btn-view {
+            padding: 8px 20px; border-radius: 20px;
+            background: transparent; border: 1px solid var(--primary);
+            color: var(--primary); font-size: 0.8rem; font-weight: bold;
+            transition: 0.3s;
+        }
+        .card:hover .btn-view { background: var(--primary); color: black; }
 
-/* ===== FOOTER ===== */
-footer{
-padding:60px;
-background:#05060a;
-text-align:center;
-color:#777;
-margin-top:60px;
-}
+        .badge {
+            position: absolute; top: 12px; right: 12px;
+            background: var(--primary); color: #000;
+            padding: 4px 10px; border-radius: 5px; font-size: 10px; font-weight: bold;
+        }
 
-/* ===== MESSENGER ===== */
-.messenger{
-position:fixed;
-bottom:25px;
-right:25px;
-background:#0084ff;
-width:70px;
-height:70px;
-display:flex;
-align-items:center;
-justify-content:center;
-border-radius:50%;
-text-decoration:none;
-font-size:30px;
-color:white;
-box-shadow:0 0 50px rgba(0,132,255,0.9);
-transition:0.4s;
-}
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 50px; background: #030408; text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05); color: #555; font-size: 0.9rem;
+        }
 
-.messenger:hover{
-transform:scale(1.2);
-}
+        /* ===== MESSENGER FIXED ===== */
+        .messenger {
+            position: fixed; bottom: 30px; right: 30px;
+            background: #0084ff; width: 60px; height: 60px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; text-decoration: none;
+            box-shadow: 0 10px 25px rgba(0, 132, 255, 0.4);
+            transition: 0.4s; z-index: 2000;
+        }
 
-</style>
+        .messenger:hover { transform: scale(1.1) rotate(10deg); }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        @media (max-width: 768px) {
+            .menu { display: none; } /* يمكن إضافة قائمة موبايل لاحقاً */
+            .hero h1 { font-size: 40px; }
+        }
+    </style>
 </head>
-
 <body>
 
 <div id="loader">
-<div class="loader-text">ISM GAME STORE</div>
+    <div class="loader-content">
+        <div class="loader-circle"></div>
+        <div class="logo">ISM STORE</div>
+    </div>
 </div>
 
 <canvas id="bg"></canvas>
 
 <nav>
-<div class="logo">ISM Game Store</div>
-<div class="menu">
-<a href="#games">Games</a>
-<a href="#subs">Subs</a>
-<a href="#gift">Gift</a>
-<a href="#internet">Internet</a>
-</div>
+    <div class="logo">ISM STORE</div>
+    <div class="menu">
+        <a href="#games">Games</a>
+        <a href="#subs">Subscriptions</a>
+        <a href="#gift">Gift Cards</a>
+        <a href="#internet">Internet</a>
+    </div>
 </nav>
 
 <section class="hero">
-<h1>Digital Marketplace Elite</h1>
-<p>Fast • Secure • Professional</p>
-<div class="counter" id="counter">0+</div>
+    <p>PREMIUM DIGITAL SERVICES</p>
+    <h1>UNLEASH THE POWER</h1>
+    <div class="counter-box">
+        <span class="counter" id="counter">0</span><span class="counter" style="color: var(--primary);">+</span>
+        <p style="font-size: 12px; color: #555;">HAPPY CLIENTS</p>
+    </div>
 </section>
 
-<!-- GAME COINS -->
 <section class="section" id="games">
-<h2>Game Coins</h2>
+    <h2>Game Coins</h2>
+    <div class="grid">
+        <div class="card" onclick="location.href='pubg.html'">
+            <div class="badge">POPULAR</div>
+            <div class="card-icon">🔫</div>
+            <h3>PUBG Mobile</h3>
+            <p>UC Instant Delivery</p>
+            <button class="btn-view">VIEW PRICES</button>
+        </div>
 
-<div class="grid">
+        <div class="card" onclick="location.href='efootball.html'">
+            <div class="badge" style="background: #ffcc00;">HOT</div>
+            <div class="card-icon">⚽</div>
+            <h3>eFootball Coins</h3>
+            <p>Global & Mobile Top-up</p>
+            <button class="btn-view">VIEW PRICES</button>
+        </div>
 
-<div class="card" onclick="location.href='pubg.html'">
-<div class="badge">NEW</div>
-<h3>PUBG Mobile UC</h3>
-</div>
+        <div class="card" onclick="location.href='freefire.html'">
+            <div class="card-icon">🔥</div>
+            <h3>Free Fire</h3>
+            <p>Diamonds via ID</p>
+            <button class="btn-view">VIEW PRICES</button>
+        </div>
 
-<div class="card" onclick="location.href='efootball.html'">
-<div class="badge">BEST</div>
-<h3>eFootball</h3>
-</div>
-
-<div class="card" onclick="location.href='freefire.html'">
-<h3>Free Fire</h3>
-</div>
-
-<div class="card" onclick="location.href='tiktok.html'">
-<h3>TikTok Coins</h3>
-</div>
-
-</div>
+        <div class="card" onclick="location.href='tiktok.html'">
+            <div class="card-icon">📱</div>
+            <h3>TikTok Coins</h3>
+            <p>Live Stream Recharge</p>
+            <button class="btn-view">VIEW PRICES</button>
+        </div>
+    </div>
 </section>
 
-<!-- SUBSCRIPTIONS -->
 <section class="section" id="subs">
-<h2>Subscriptions</h2>
-<div class="grid">
-
-<div class="card" onclick="location.href='psplus.html'">
-<h3>PS Plus</h3>
-</div>
-
-<div class="card" onclick="location.href='netflix.html'">
-<h3>Netflix</h3>
-</div>
-
-</div>
-</section>
-
-<!-- GIFT CARDS -->
-<section class="section" id="gift">
-<h2>Gift Cards</h2>
-<div class="grid">
-
-<div class="card" onclick="location.href='psn-tr.html'">
-<h3>PSN Turkey</h3>
-</div>
-
-</div>
-</section>
-
-<!-- INTERNET -->
-<section class="section" id="internet">
-<h2>Internet</h2>
-<div class="grid">
-
-<div class="card" onclick="location.href='internet.html'">
-<h3>Ooredoo & Orange</h3>
-</div>
-
-</div>
+    <h2>Subscriptions</h2>
+    <div class="grid">
+        <div class="card" onclick="location.href='psplus.html'">
+            <div class="card-icon">🎮</div>
+            <h3>PS Plus</h3>
+            <p>Essential / Extra / Deluxe</p>
+            <button class="btn-view">VIEW PRICES</button>
+        </div>
+        <div class="card" onclick="location.href='netflix.html'">
+            <div class="card-icon">🎬</div>
+            <h3>Netflix</h3>
+            <p>Ultra HD 4K Screens</p>
+            <button class="btn-view">VIEW PRICES</button>
+        </div>
+    </div>
 </section>
 
 <footer>
-© 2026 ISM Game Store — GOD MODE EDITION
+    <div class="logo" style="font-size: 1rem; margin-bottom: 10px;">ISM STORE</div>
+    <p>© 2026 Crafted for Professional Gamers</p>
 </footer>
 
-<a class="messenger" href="https://m.me/61555974173704" target="_blank">💬</a>
+<a class="messenger" href="https://m.me/61555974173704" target="_blank">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.477 2 2 6.145 2 11.258c0 2.908 1.462 5.5 3.746 7.225V22l3.356-1.843c.917.254 1.887.393 2.898.393 5.523 0 10-4.146 10-9.258S17.523 2 12 2zm1.293 12.303l-2.586-2.754-5.04 2.754 5.546-5.89 2.586 2.754 5.04-2.754-5.546 5.89z"/></svg>
+</a>
 
 <script>
+    // Loader
+    window.onload = () => {
+        setTimeout(() => {
+            document.getElementById("loader").style.opacity = "0";
+            setTimeout(() => document.getElementById("loader").style.display = "none", 500);
+        }, 1000);
+    }
 
-/* Loader */
-window.onload = function(){
-setTimeout(()=>{
-document.getElementById("loader").style.display="none";
-},1500);
-}
+    // Smooth Counter
+    let count = 0;
+    const counterElement = document.getElementById("counter");
+    const target = 850;
+    const updateCounter = () => {
+        const increment = target / 100;
+        if(count < target) {
+            count += increment;
+            counterElement.innerText = Math.ceil(count);
+            setTimeout(updateCounter, 20);
+        } else {
+            counterElement.innerText = target;
+        }
+    };
+    updateCounter();
 
-/* Counter Animation */
-let count=0;
-let counter=document.getElementById("counter");
+    // Enhanced Particles
+    const canvas = document.getElementById("bg");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-let interval=setInterval(()=>{
-count+=10;
-counter.innerText=count+"+";
+    let particles = [];
+    for(let i=0; i<100; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 2,
+            speed: Math.random() * 0.5 + 0.2
+        });
+    }
 
-if(count>=500){
-clearInterval(interval);
-}
-
-},30);
-
-/* Particle Background */
-const canvas=document.getElementById("bg");
-const ctx=canvas.getContext("2d");
-
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-let particles=[];
-
-for(let i=0;i<80;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2,
-d:Math.random()*1
-});
-}
-
-function draw(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height);
-
-ctx.fillStyle="rgba(0,255,255,0.5)";
-
-particles.forEach(p=>{
-
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2,true);
-ctx.fill();
-
-});
-
-update();
-}
-
-function update(){
-
-particles.forEach(p=>{
-p.y+=p.d;
-
-if(p.y>canvas.height){
-p.y=0;
-}
-
-});
-
-}
-
-setInterval(draw,30);
-
+    function animate() {
+        ctx.clearRect(0,0,canvas.width, canvas.height);
+        ctx.fillStyle = "rgba(0, 247, 255, 0.3)";
+        particles.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+            p.y -= p.speed;
+            if(p.y < 0) p.y = canvas.height;
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
 </script>
 
 </body>
 </html>
+
