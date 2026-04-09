@@ -108,6 +108,13 @@
             font-family: 'Orbitron', sans-serif;
         }
 
+        .promo-badge {
+            position: absolute; top: 10px; left: 10px;
+            background: #ff4d4d; color: white;
+            font-size: 10px; padding: 2px 8px; border-radius: 5px;
+            font-weight: bold; text-transform: uppercase;
+        }
+
         .btn-order {
             background: transparent; border: 2px solid var(--primary);
             color: var(--primary); padding: 12px 30px; border-radius: 30px;
@@ -159,6 +166,27 @@
 
 <div class="container">
     <div class="grid">
+        <div class="card" style="border-color: #ff4d4d;">
+            <div class="promo-badge">PROMO ✋</div>
+            <h3>260 <span class="coin-icon">🪙</span></h3>
+            <div class="price">6 DT</div>
+            <button class="btn-order" onclick="order('260 Coins (PROMO)')">ORDER NOW</button>
+        </div>
+
+        <div class="card" style="border-color: #ff4d4d;">
+            <div class="promo-badge">PROMO ✋</div>
+            <h3>840 <span class="coin-icon">🪙</span></h3>
+            <div class="price">20 DT</div>
+            <button class="btn-order" onclick="order('840 Coins (PROMO)')">ORDER NOW</button>
+        </div>
+
+        <div class="card" style="border-color: #ff4d4d;">
+            <div class="promo-badge">PROMO ✋</div>
+            <h3>3430 <span class="coin-icon">🪙</span></h3>
+            <div class="price">70 DT</div>
+            <button class="btn-order" onclick="order('3430 Coins (PROMO)')">ORDER NOW</button>
+        </div>
+
         <div class="card">
             <h3>130 <span class="coin-icon">🪙</span></h3>
             <div class="price">6 DT</div>
@@ -219,14 +247,12 @@
 </a>
 
 <script>
-    // نظام الطلب المطور
     function order(pack) {
         let message = encodeURIComponent("مرحباً، أود طلب باقة: " + pack + " eFootball Coins");
         let url = "https://m.me/61555974173704?text=" + message;
         window.open(url, '_blank');
     }
 
-    // نظام تبديل اللغة البسيط
     let lang = "en";
     function toggleLang() {
         const title = document.getElementById("pageTitle");
@@ -242,4 +268,3 @@
 
 </body>
 </html>
-
