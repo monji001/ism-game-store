@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>eFootball Coins | ISM STORE</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
             --primary: #00f7ff;
@@ -47,18 +47,16 @@
             text-align: center; margin: 60px 0 40px; position: relative;
         }
         .section-divider h2 {
-            font-family: 'Orbitron', sans-serif; font-size: 22px; color: var(--promo-color); text-transform: uppercase; letter-spacing: 3px;
+            font-family: 'Orbitron', sans-serif; font-size: 22px; color: var(--primary); text-transform: uppercase; letter-spacing: 3px;
             display: inline-block; background: var(--bg-dark); padding: 0 20px; position: relative; z-index: 2;
         }
-        .section-divider::after { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(255, 77, 77, 0.3); z-index: 1; }
-        .normal-divider h2 { color: var(--primary); }
-        .normal-divider::after { background: rgba(0, 247, 255, 0.2); }
+        .section-divider::after { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(0, 247, 255, 0.2); z-index: 1; }
 
         /* ===== GRID & CARDS ===== */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* زيادة الحجم الأدنى للبطاقة */
-            gap: 40px; /* زيادة المسافة بين البطاقات */
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
             padding-bottom: 60px;
         }
 
@@ -71,26 +69,17 @@
         }
 
         .card:hover { transform: translateY(-15px); border-color: var(--primary); box-shadow: 0 15px 40px rgba(0, 247, 255, 0.15); }
-        .promo-card:hover { border-color: var(--promo-color); box-shadow: 0 15px 40px rgba(255, 77, 77, 0.15); }
 
         .card h3 { font-family: 'Orbitron', sans-serif; font-size: 28px; margin: 0 0 15px; color: #fff; }
         .coin-icon { color: #ffcc00; font-size: 22px; }
 
         .price { font-size: 32px; color: var(--primary); font-weight: bold; margin-bottom: 30px; font-family: 'Orbitron', sans-serif; }
-        .promo-card .price { color: var(--promo-color); }
-
-        .promo-badge {
-            position: absolute; top: 0; left: 0; background: var(--promo-color); color: white;
-            font-size: 11px; padding: 5px 15px; border-bottom-right-radius: 15px; font-weight: bold;
-        }
 
         .btn-order {
             background: transparent; border: 2px solid var(--primary); color: var(--primary); padding: 12px 30px; border-radius: 30px;
             font-weight: bold; cursor: pointer; transition: 0.3s; width: 85%; text-transform: uppercase;
         }
-        .promo-card .btn-order { border-color: var(--promo-color); color: var(--promo-color); }
         .card:hover .btn-order { background: var(--primary); color: #000; }
-        .promo-card:hover .btn-order { background: var(--promo-color); color: #fff; }
 
         footer { padding: 40px; background: #030408; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: #555; }
         .messenger { position: fixed; bottom: 30px; right: 30px; background: #0084ff; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 10px 25px rgba(0, 132, 255, 0.4); transition: 0.4s; z-index: 2000; }
@@ -116,34 +105,7 @@
 
 <div class="container">
     <div class="section-divider">
-        <h2>Limited Time Offers ✋</h2>
-    </div>
-
-    <div class="grid">
-        <div class="card promo-card">
-            <div class="promo-badge">HOT PROMO</div>
-            <h3>260 <span class="coin-icon">🪙</span></h3>
-            <div class="price">6 DT</div>
-            <button class="btn-order" onclick="order('260 Coins (PROMO)')">ORDER NOW</button>
-        </div>
-
-        <div class="card promo-card">
-            <div class="promo-badge">HOT PROMO</div>
-            <h3>840 <span class="coin-icon">🪙</span></h3>
-            <div class="price">20 DT</div>
-            <button class="btn-order" onclick="order('840 Coins (PROMO)')">ORDER NOW</button>
-        </div>
-
-        <div class="card promo-card">
-            <div class="promo-badge">HOT PROMO</div>
-            <h3>3430 <span class="coin-icon">🪙</span></h3>
-            <div class="price">70 DT</div>
-            <button class="btn-order" onclick="order('3430 Coins (PROMO)')">ORDER NOW</button>
-        </div>
-    </div>
-
-    <div class="section-divider normal-divider">
-        <h2>Standard Recharge ⚠️</h2>
+        <h2 id="sectionTitle">Standard Recharge ⚠️</h2>
     </div>
 
     <div class="grid">
@@ -216,16 +178,14 @@
     let lang = "en";
     function toggleLang() {
         const title = document.getElementById("pageTitle");
-        const dividers = document.querySelectorAll('.section-divider h2');
+        const sectionTitle = document.getElementById("sectionTitle");
         if(lang === "en") {
             title.innerText = "كوينز eFootball موبايل";
-            dividers[0].innerText = "عروض محدودة ✋";
-            dividers[1].innerText = "شحن عادي ⚠️";
+            sectionTitle.innerText = "شحن عادي ⚠️";
             lang = "ar";
         } else {
             title.innerText = "eFootball Mobile Coins";
-            dividers[0].innerText = "Limited Time Offers ✋";
-            dividers[1].innerText = "Standard Recharge ⚠️";
+            sectionTitle.innerText = "Standard Recharge ⚠️";
             lang = "en";
         }
     }
