@@ -15,13 +15,13 @@
 --primary:#00f7ff;
 --accent:#7000ff;
 --bg-dark:#07080f;
---card-bg:rgba(20,25,40,0.75);
+--card-bg:#111827;
 }
-
-/* ===== GLOBAL ===== */
 
 *{
 box-sizing:border-box;
+margin:0;
+padding:0;
 }
 
 html{
@@ -29,7 +29,6 @@ scroll-behavior:smooth;
 }
 
 body{
-margin:0;
 font-family:'Poppins',sans-serif;
 background:var(--bg-dark);
 color:white;
@@ -52,8 +51,8 @@ transition:0.5s;
 }
 
 .loader-circle{
-width:55px;
-height:55px;
+width:60px;
+height:60px;
 border:3px solid transparent;
 border-top-color:var(--primary);
 border-radius:50%;
@@ -95,7 +94,7 @@ border-bottom:1px solid rgba(255,255,255,0.05);
 
 .logo{
 font-family:'Orbitron',sans-serif;
-font-size:1.5rem;
+font-size:1.6rem;
 font-weight:bold;
 color:var(--primary);
 text-shadow:0 0 15px rgba(0,247,255,0.5);
@@ -155,10 +154,6 @@ background-position:200% center;
 }
 }
 
-.counter-box{
-margin-top:25px;
-}
-
 .counter{
 font-size:4rem;
 font-family:'Orbitron',sans-serif;
@@ -194,13 +189,22 @@ gap:30px;
 
 .card{
 position:relative;
-height:260px;
-border-radius:20px;
+height:320px;
+border-radius:22px;
 overflow:hidden;
 cursor:pointer;
 transition:0.4s;
-background:#111;
+background:linear-gradient(145deg,#111827,#0b1220);
 border:1px solid rgba(255,255,255,0.06);
+}
+
+.card::before{
+content:'';
+position:absolute;
+inset:0;
+border:1px solid rgba(0,247,255,0.15);
+border-radius:22px;
+pointer-events:none;
 }
 
 .card:hover{
@@ -211,20 +215,23 @@ box-shadow:0 10px 40px rgba(0,247,255,0.25);
 .card img{
 width:100%;
 height:100%;
-object-fit:cover;
+object-fit:contain;
+padding:30px;
+background:#0d111d;
 transition:0.5s;
+display:block;
 }
 
 .card:hover img{
-transform:scale(1.08);
+transform:scale(1.05);
 }
 
 .card-overlay{
 position:absolute;
 inset:0;
 background:linear-gradient(to top,
-rgba(0,0,0,0.95),
-rgba(0,0,0,0.25));
+rgba(0,0,0,0.92),
+rgba(0,0,0,0.15));
 display:flex;
 flex-direction:column;
 justify-content:flex-end;
@@ -322,6 +329,10 @@ font-size:11px;
 padding-top:160px;
 }
 
+.card{
+height:280px;
+}
+
 }
 
 </style>
@@ -364,11 +375,12 @@ padding-top:160px;
 
 <h1>TOP UP & DIGITAL SERVICES</h1>
 
-<div class="counter-box">
+<div style="margin-top:25px;">
+
 <span class="counter" id="counter">0</span>
 <span class="counter">+</span>
 
-<p style="color:#888;font-size:14px;">
+<p style="color:#888;font-size:14px;margin-top:10px;">
 Happy Clients & Trusted Services
 </p>
 
@@ -388,7 +400,7 @@ Happy Clients & Trusted Services
 
 <div class="badge" style="background:#ffcc00;">HOT</div>
 
-<img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1200&auto=format&fit=crop">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/EFootball_logo.png">
 
 <div class="card-overlay">
 
@@ -408,7 +420,7 @@ Top up coins بسرعة ⚽<br>
 
 <div class="badge">BEST</div>
 
-<img src="https://images.unsplash.com/photo-1542751110-97427bbecf20?q=80&w=1200&auto=format&fit=crop">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/PUBG_Mobile_logo.svg">
 
 <div class="card-overlay">
 
@@ -426,7 +438,7 @@ UC instant delivery 🔥<br>
 
 <div class="card" onclick="location.href='freefire.html'">
 
-<img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=1200&auto=format&fit=crop">
+<img src="https://1000logos.net/wp-content/uploads/2021/10/Free-Fire-logo.png">
 
 <div class="card-overlay">
 
@@ -444,7 +456,7 @@ Recharge diamonds 💎<br>
 
 <div class="card" onclick="location.href='tiktok.html'">
 
-<img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?q=80&w=1200&auto=format&fit=crop">
+<img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/TikTok_logo.svg">
 
 <div class="card-overlay">
 
@@ -476,7 +488,7 @@ Recharge TikTok coins 🎵<br>
 
 <div class="badge">PLAYSTATION</div>
 
-<img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?q=80&w=1200&auto=format&fit=crop">
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/PlayStation_Plus_logo.svg">
 
 <div class="card-overlay">
 
@@ -494,7 +506,7 @@ PS Plus Essential / Deluxe 🎮<br>
 
 <div class="card" onclick="location.href='netflix.html'">
 
-<img src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?q=80&w=1200&auto=format&fit=crop">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg">
 
 <div class="card-overlay">
 
@@ -526,7 +538,7 @@ PS Plus Essential / Deluxe 🎮<br>
 
 <div class="badge">TR STORE</div>
 
-<img src="https://images.unsplash.com/photo-1605901309584-818e25960a8f?q=80&w=1200&auto=format&fit=crop">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/00/PlayStation_logo.svg">
 
 <div class="card-overlay">
 
@@ -558,7 +570,7 @@ PS Plus Essential / Deluxe 🎮<br>
 
 <div class="badge">FAST</div>
 
-<img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Ooredoo_logo.svg">
 
 <div class="card-overlay">
 
@@ -665,7 +677,6 @@ const canvas=document.getElementById("bg");
 const ctx=canvas.getContext("2d");
 
 canvas.width=window.innerWidth;
-
 canvas.height=window.innerHeight;
 
 let particles=[];
@@ -712,6 +723,13 @@ requestAnimationFrame(animate);
 }
 
 animate();
+
+window.addEventListener("resize",()=>{
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+});
 
 </script>
 
