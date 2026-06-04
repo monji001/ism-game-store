@@ -9,8 +9,8 @@
     <style>
         :root {
             --primary: #00f7ff;
-            --accent: #7000ff;
-            --promo-color: #ff4d4d;
+            --accent: #ffcc00;
+            --promo-color: #7000ff;
             --bg-dark: #07080f;
             --card-bg: rgba(20, 25, 40, 0.7);
         }
@@ -50,6 +50,7 @@
             font-family: 'Orbitron', sans-serif; font-size: 22px; color: var(--primary); text-transform: uppercase; letter-spacing: 3px;
             display: inline-block; background: var(--bg-dark); padding: 0 20px; position: relative; z-index: 2;
         }
+        .section-divider.promo h2 { color: var(--accent); }
         .section-divider::after { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(0, 247, 255, 0.2); z-index: 1; }
 
         /* ===== GRID & CARDS ===== */
@@ -69,17 +70,23 @@
         }
 
         .card:hover { transform: translateY(-15px); border-color: var(--primary); box-shadow: 0 15px 40px rgba(0, 247, 255, 0.15); }
+        .card.promo-card { border-color: rgba(255, 204, 0, 0.2); }
+        .card.promo-card:hover { border-color: var(--accent); box-shadow: 0 15px 40px rgba(255, 204, 0, 0.15); }
 
         .card h3 { font-family: 'Orbitron', sans-serif; font-size: 28px; margin: 0 0 15px; color: #fff; }
         .coin-icon { color: #ffcc00; font-size: 22px; }
 
         .price { font-size: 32px; color: var(--primary); font-weight: bold; margin-bottom: 30px; font-family: 'Orbitron', sans-serif; }
+        .card.promo-card .price { color: var(--accent); }
 
         .btn-order {
             background: transparent; border: 2px solid var(--primary); color: var(--primary); padding: 12px 30px; border-radius: 30px;
             font-weight: bold; cursor: pointer; transition: 0.3s; width: 85%; text-transform: uppercase;
         }
         .card:hover .btn-order { background: var(--primary); color: #000; }
+        
+        .card.promo-card .btn-order { border-color: var(--accent); color: var(--accent); }
+        .card.promo-card:hover .btn-order { background: var(--accent); color: #000; }
 
         footer { padding: 40px; background: #030408; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: #555; }
         .messenger { position: fixed; bottom: 30px; right: 30px; background: #0084ff; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 10px 25px rgba(0, 132, 255, 0.4); transition: 0.4s; z-index: 2000; }
@@ -104,6 +111,43 @@
 </section>
 
 <div class="container">
+    
+    <!-- ===== PROMO OFFERS SECTION ===== -->
+    <div class="section-divider promo">
+        <h2 id="promoTitle">Special Offers 🔥</h2>
+    </div>
+
+    <div class="grid">
+        <div class="card promo-card">
+            <div style="position:absolute; top:10px; right:10px; background:var(--accent); color:#000; font-size:10px; font-weight:bold; padding:2px 8px; border-radius:5px;">SPECIAL</div>
+            <h3>260 <span class="coin-icon">🪙</span></h3>
+            <div class="price">6 DT</div>
+            <button class="btn-order" onclick="order('260 Coins (Promo)')">ORDER NOW</button>
+        </div>
+
+        <div class="card promo-card">
+            <div style="position:absolute; top:10px; right:10px; background:var(--accent); color:#000; font-size:10px; font-weight:bold; padding:2px 8px; border-radius:5px;">SPECIAL</div>
+            <h3>840 <span class="coin-icon">🪙</span></h3>
+            <div class="price">20 DT</div>
+            <button class="btn-order" onclick="order('840 Coins (Promo)')">ORDER NOW</button>
+        </div>
+
+        <div class="card promo-card">
+            <div style="position:absolute; top:10px; right:10px; background:var(--accent); color:#000; font-size:10px; font-weight:bold; padding:2px 8px; border-radius:5px;">SPECIAL</div>
+            <h3>1630 <span class="coin-icon">🪙</span></h3>
+            <div class="price">35 DT</div>
+            <button class="btn-order" onclick="order('1630 Coins (Promo)')">ORDER NOW</button>
+        </div>
+
+        <div class="card promo-card" style="border-color: var(--promo-color);">
+            <div style="position:absolute; top:10px; right:10px; background:rgba(255, 77, 77, 0.2); color:#ff4d4d; border: 1px solid #ff4d4d; font-size:10px; font-weight:bold; padding:2px 8px; border-radius:5px;">MEGA BUNDLE</div>
+            <h3>2760 <span class="coin-icon">🪙</span></h3>
+            <div class="price" style="color: #ff4d4d;">60 DT</div>
+            <button class="btn-order" onclick="order('2760 Coins Mega Bundle')" style="border-color: #ff4d4d; color: #ff4d4d;">ORDER NOW</button>
+        </div>
+    </div>
+
+    <!-- ===== STANDARD RECHARGE SECTION ===== -->
     <div class="section-divider">
         <h2 id="sectionTitle">Standard Recharge ⚠️</h2>
     </div>
@@ -151,8 +195,8 @@
             <button class="btn-order" onclick="order('3250 Coins')">ORDER NOW</button>
         </div>
 
-        <div class="card" style="border-color: var(--accent);">
-            <div style="position:absolute; top:10px; right:10px; background:var(--accent); font-size:10px; padding:2px 8px; border-radius:5px;">BEST VALUE</div>
+        <div class="card" style="border-color: var(--promo-color);">
+            <div style="position:absolute; top:10px; right:10px; background:var(--promo-color); font-size:10px; padding:2px 8px; border-radius:5px;">BEST VALUE</div>
             <h3>5700 <span class="coin-icon">🪙</span></h3>
             <div class="price">175 DT</div>
             <button class="btn-order" onclick="order('5700 Coins')">ORDER NOW</button>
@@ -179,13 +223,16 @@
     function toggleLang() {
         const title = document.getElementById("pageTitle");
         const sectionTitle = document.getElementById("sectionTitle");
+        const promoTitle = document.getElementById("promoTitle");
         if(lang === "en") {
             title.innerText = "كوينز eFootball موبايل";
             sectionTitle.innerText = "شحن عادي ⚠️";
+            promoTitle.innerText = "عروض خاصة 🔥";
             lang = "ar";
         } else {
             title.innerText = "eFootball Mobile Coins";
             sectionTitle.innerText = "Standard Recharge ⚠️";
+            promoTitle.innerText = "Special Offers 🔥";
             lang = "en";
         }
     }
