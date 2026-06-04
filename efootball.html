@@ -79,6 +79,19 @@
         .price { font-size: 32px; color: var(--primary); font-weight: bold; margin-bottom: 30px; font-family: 'Orbitron', sans-serif; }
         .card.promo-card .price { color: var(--accent); }
 
+        /* ===== BUNDLE BREAKDOWN ===== */
+        .bundle-info {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: -10px;
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1px dashed rgba(255, 77, 77, 0.2);
+            display: inline-block;
+        }
+
         .btn-order {
             background: transparent; border: 2px solid var(--primary); color: var(--primary); padding: 12px 30px; border-radius: 30px;
             font-weight: bold; cursor: pointer; transition: 0.3s; width: 85%; text-transform: uppercase;
@@ -139,9 +152,14 @@
             <button class="btn-order" onclick="order('1630 Coins (Promo)')">ORDER NOW</button>
         </div>
 
-        <div class="card promo-card" style="border-color: var(--promo-color);">
+        <!-- الباقة التجميعية مع توضيح أنها مجموع العروض الثلاثة -->
+        <div class="card promo-card" style="border-color: #ff4d4d;">
             <div style="position:absolute; top:10px; right:10px; background:rgba(255, 77, 77, 0.2); color:#ff4d4d; border: 1px solid #ff4d4d; font-size:10px; font-weight:bold; padding:2px 8px; border-radius:5px;">MEGA BUNDLE</div>
             <h3>2760 <span class="coin-icon">🪙</span></h3>
+            
+            <!-- النص التوضيحي للمجموع -->
+            <div class="bundle-info" id="bundleText">Includes: 260 + 840 + 1630 Coins</div>
+            
             <div class="price" style="color: #ff4d4d;">60 DT</div>
             <button class="btn-order" onclick="order('2760 Coins Mega Bundle')" style="border-color: #ff4d4d; color: #ff4d4d;">ORDER NOW</button>
         </div>
@@ -195,8 +213,8 @@
             <button class="btn-order" onclick="order('3250 Coins')">ORDER NOW</button>
         </div>
 
-        <div class="card" style="border-color: var(--promo-color);">
-            <div style="position:absolute; top:10px; right:10px; background:var(--promo-color); font-size:10px; padding:2px 8px; border-radius:5px;">BEST VALUE</div>
+        <div class="card" style="border-color: #ff4d4d;">
+            <div style="position:absolute; top:10px; right:10px; background:#ff4d4d; font-size:10px; padding:2px 8px; border-radius:5px;">BEST VALUE</div>
             <h3>5700 <span class="coin-icon">🪙</span></h3>
             <div class="price">175 DT</div>
             <button class="btn-order" onclick="order('5700 Coins')">ORDER NOW</button>
@@ -224,15 +242,19 @@
         const title = document.getElementById("pageTitle");
         const sectionTitle = document.getElementById("sectionTitle");
         const promoTitle = document.getElementById("promoTitle");
+        const bundleText = document.getElementById("bundleText");
+        
         if(lang === "en") {
             title.innerText = "كوينز eFootball موبايل";
             sectionTitle.innerText = "شحن عادي ⚠️";
             promoTitle.innerText = "عروض خاصة 🔥";
+            bundleText.innerText = "تشمل الباقات: 260 + 840 + 1630 كوينز";
             lang = "ar";
         } else {
             title.innerText = "eFootball Mobile Coins";
             sectionTitle.innerText = "Standard Recharge ⚠️";
             promoTitle.innerText = "Special Offers 🔥";
+            bundleText.innerText = "Includes: 260 + 840 + 1630 Coins";
             lang = "en";
         }
     }
