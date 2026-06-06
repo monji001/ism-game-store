@@ -443,4 +443,26 @@
         if (!element) return;
         
         if (distance < 0) {
-            element
+            element.innerText = lang === "en" ? "Expired" : "منتهي";
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        const dText = langData[lang].d;
+        const hText = langData[lang].h;
+        const mText = langData[lang].m;
+        const sText = langData[lang].s;
+
+        element.innerText = `${days}${dText} ${hours}${hText} ${minutes}${mText} ${seconds}${sText}`;
+    }
+
+    setInterval(renderLiveTimers, 1000);
+    renderLiveTimers();
+</script>
+
+</body>
+</html>
